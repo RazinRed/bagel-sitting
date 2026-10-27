@@ -16,6 +16,9 @@
   --blush:#ffd9e2;
   --rose:#f58aa6;
   --berry:#c2325f;
+  --on-berry:#ffffff;
+  --alert:#c2325f;
+  --on-alert:#ffffff;
   --ink:#4a2330;
   --soft:#8a5a68;
   --line:#f6c3d1;
@@ -23,20 +26,25 @@
   --mint-ink:#2f6b52;
   --tape:rgba(255,200,215,.75);
   --shadow:0 2px 0 rgba(194,50,95,.10), 0 10px 24px -12px rgba(194,50,95,.35);
+  --ease-out:cubic-bezier(.23,1,.32,1);
   --display:"Sniglet","Nunito","Arial Rounded MT Bold",system-ui,sans-serif;
   --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
   --hand:"Mali","Comic Sans MS","Nunito",cursive;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}}
+  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--on-berry:#2a1219;--alert:#8a2648;--on-alert:#ffffff;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}
+  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--on-berry:#2a1219;--alert:#8a2648;--on-alert:#ffffff;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}
 
 *{box-sizing:border-box}
+html{scrollbar-color:var(--rose) var(--bg);-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{
   background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
   background-image:radial-gradient(var(--line) 1.2px,transparent 1.3px);background-size:22px 22px;
 }
+::selection{background:var(--berry);color:var(--on-berry)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
 .wrap{max-width:980px;margin:0 auto;padding-inline:18px;padding-block:20px 64px}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.1;margin:0}
 p{margin:0}
@@ -44,10 +52,10 @@ p{margin:0}
 
 /* hero */
 .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding-block:18px 26px}
-.hero .eyebrow{font-family:var(--hand);color:var(--berry);font-size:1.1rem}
-.hero h1{font-size:clamp(2.6rem,7vw,4.4rem);font-weight:800;color:var(--berry);letter-spacing:-.5px;margin-top:4px}
+.hero h1{font-size:clamp(2.6rem,7vw,4.4rem);font-weight:800;color:var(--berry);letter-spacing:-.5px}
 .hero h1 span{display:block;color:var(--ink);font-size:.55em;font-weight:400;margin-top:6px}
-.hero .intro{margin-top:14px;max-width:46ch;color:var(--soft)}
+.hero .intro{margin-top:16px;max-width:46ch;color:var(--soft)}
+.hero .intro b{color:var(--berry);font-family:var(--hand);font-weight:600}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
 .facts li{background:var(--paper);border:2px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.9rem}
 
@@ -60,20 +68,25 @@ p{margin:0}
 .hero .polaroid{max-width:340px;justify-self:center}
 
 /* nav */
-.chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding-block:10px;margin-inline:-18px;padding-inline:18px;background:linear-gradient(var(--bg) 70%,transparent);scrollbar-width:none}
+.chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding-block:10px;margin-inline:-18px;padding-inline:18px;background:linear-gradient(var(--bg) 70%,transparent);scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 32px),transparent)}
 .chips::-webkit-scrollbar{display:none}
-.chips a{flex:none;text-decoration:none;color:var(--berry);font-weight:800;font-size:.9rem;background:var(--paper);border:2px solid var(--rose);border-radius:999px;padding:5px 14px}
-.chips a:hover,.chips a:focus-visible{background:var(--rose);color:var(--paper);outline:none}
+.chips a{flex:none;text-decoration:none;color:var(--berry);font-weight:800;font-size:.9rem;background:var(--paper);border:2px solid var(--rose);border-radius:999px;padding:5px 14px;
+  transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .16s var(--ease-out)}
+.chips a:active{transform:scale(.96)}
+.chips a[aria-current]{background:var(--berry);border-color:var(--berry);color:var(--on-berry)}
+@media (hover:hover) and (pointer:fine){.chips a:not([aria-current]):hover{background:var(--blush)}}
 
 /* alert */
-.alert{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--berry);color:#fff;border-radius:22px;padding:20px 22px;margin-block:18px 8px;box-shadow:var(--shadow)}
-.alert .paw{font-family:var(--display);font-size:2.2rem;line-height:1;background:#fff;color:var(--berry);width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
+.alert{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--alert);color:var(--on-alert);border-radius:22px;padding:20px 22px;margin-block:18px 8px;box-shadow:var(--shadow);scroll-margin-top:72px}
+.alert .icon{background:var(--on-alert);color:var(--alert);width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
 .alert h2{font-size:1.5rem}
 .alert p{margin-top:6px;max-width:62ch}
 .alert ul{margin:8px 0 0;padding-left:20px}
+.alert li+li{margin-top:4px}
 
 /* sections */
-section{padding-top:40px;scroll-margin-top:60px}
+section{padding-top:40px;scroll-margin-top:72px}
 .sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .sec-head h2{font-size:clamp(1.8rem,4.5vw,2.4rem);color:var(--berry)}
 .sec-head .note{font-family:var(--hand);color:var(--soft)}
@@ -82,38 +95,58 @@ section{padding-top:40px;scroll-margin-top:60px}
 .split{display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:start}
 .split.flip{grid-template-columns:300px 1fr}
 .split>*{min-width:0}
+.split p+p{margin-top:10px}
 .stack{display:grid;gap:22px}
 
 /* visit checklist */
 .checklist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.checklist li label{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+.checklist li label{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer;-webkit-user-select:none;user-select:none;
+  transition:border-color .2s ease,background-color .2s ease,transform .16s var(--ease-out)}
+.checklist li label:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){.checklist li label:hover{border-color:var(--rose)}}
 .checklist input{position:absolute;opacity:0;pointer-events:none}
-.checklist .box{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--rose);display:grid;place-items:center;font-family:var(--display);font-weight:800;color:var(--berry);font-size:.95rem;font-variant-numeric:tabular-nums}
+.checklist .box{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--rose);display:grid;place-items:center;font-family:var(--display);font-weight:800;color:var(--berry);font-size:.95rem;font-variant-numeric:tabular-nums;
+  transition:background-color .2s ease,border-color .2s ease}
+.checklist .box>span,.checklist .box::after{grid-area:1/1;transition:opacity .2s var(--ease-out),transform .2s var(--ease-out)}
+.checklist .box::after{content:"";width:16px;height:16px;background:var(--mint);opacity:0;transform:scale(.6);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center/contain no-repeat}
 .checklist b{display:block;font-weight:800}
 .checklist small{color:var(--soft);font-size:.92rem}
-.checklist input:checked + label{background:var(--mint);border-color:transparent}
-.checklist input:checked + label .box{background:var(--mint-ink);border-color:var(--mint-ink);color:var(--mint)}
-.checklist input:checked + label .box::after{content:"✓"}
-.checklist input:checked + label .box span{display:none}
+.checklist li.next label{border-color:var(--rose);box-shadow:var(--shadow)}
+.checklist li.next .box{background:var(--blush)}
+.checklist input:checked + label{background:var(--mint);border-color:transparent;box-shadow:none}
+.checklist input:checked + label .box{background:var(--mint-ink);border-color:var(--mint-ink)}
+.checklist input:checked + label .box>span{opacity:0;transform:scale(.6)}
+.checklist input:checked + label .box::after{opacity:1;transform:none}
 .checklist input:checked + label b{text-decoration:line-through;text-decoration-color:var(--mint-ink)}
 .checklist input:focus-visible + label{outline:3px solid var(--rose);outline-offset:2px}
 .progress{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
 .bar{flex:1;min-width:140px;height:12px;border-radius:99px;background:var(--blush);overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--rose);border-radius:99px;transition:width .3s}
-.btn{font:inherit;font-weight:800;border:2px solid var(--rose);background:var(--paper);color:var(--berry);border-radius:999px;padding:6px 16px;cursor:pointer}
-.btn:hover,.btn:focus-visible{background:var(--rose);color:var(--paper);outline:none}
+.bar i{display:block;height:100%;width:100%;background:var(--rose);border-radius:99px;transform:translateX(-100%);transition:transform .35s var(--ease-out),background-color .3s ease}
+.progress.done .bar i{background:var(--mint-ink)}
 .done-msg{font-family:var(--hand);color:var(--mint-ink)}
+
+.btn{font:inherit;font-weight:800;border:2px solid var(--rose);background:var(--paper);color:var(--berry);border-radius:999px;padding:6px 16px;cursor:pointer;
+  transition:background-color .15s ease,border-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.45;cursor:default}
+@media (hover:hover) and (pointer:fine){.btn:hover:not(:disabled){background:var(--blush)}}
+/* hold-to-reset: a clipped copy of the label fills left to right while held */
+.hold{position:relative;overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+.hold .fill{position:absolute;inset:0;display:grid;place-items:center;background:var(--berry);color:var(--on-berry);clip-path:inset(0 100% 0 0);transition:clip-path .2s var(--ease-out)}
+.hold.holding .fill{clip-path:inset(0 0 0 0);transition:clip-path 1s linear}
 
 /* steps */
 .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:14px}
 .steps li{counter-increment:s;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start}
-.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--paper);background:var(--rose);width:38px;height:38px;border-radius:12px 12px 12px 4px;display:grid;place-items:center}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--on-berry);background:var(--berry);width:38px;height:38px;border-radius:12px 12px 12px 4px;display:grid;place-items:center}
 .steps li>div{padding-top:6px}
 .steps strong{color:var(--berry)}
 
-.tag{display:inline-block;font-family:var(--hand);font-size:.85rem;color:var(--berry);border:1.5px dashed var(--rose);border-radius:8px;padding:0 8px;margin-left:4px;background:var(--blush)}
 .callout{background:var(--blush);border-radius:18px;padding:14px 16px;margin-top:16px}
 .callout b{color:var(--berry)}
+.thanks{margin-top:44px}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:14px}
 .kv dt{font-weight:800;color:var(--berry)}
 .kv dd{margin:0}
@@ -123,24 +156,14 @@ kbd{font-family:var(--body);font-weight:800;background:var(--paper);border:2px s
 .tip{background:var(--paper);border-radius:18px;padding:16px;border:2px solid var(--line)}
 .tip h3{font-size:1.15rem;color:var(--berry);margin-bottom:6px}
 
-/* draft highlights */
-.draftbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--paper);border:2px dashed var(--rose);border-radius:16px;padding:10px 14px;font-weight:700}
-.draftbar .newb{margin-left:0}
-.newb{display:none;font-family:var(--display);font-size:.72rem;letter-spacing:.06em;color:var(--paper);background:var(--berry);border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:middle}
-body.show-new .newb{display:inline-block}
-body.show-new .new{outline:3px dashed var(--rose);outline-offset:4px;border-radius:14px}
-
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
 .gallery .polaroid img{aspect-ratio:3/4}
-.traits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:22px}
-.trait{background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:12px 14px}
-.trait b{color:var(--berry);display:block}
 
 /* help */
 .help{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .help .card{border-radius:20px;padding:18px}
-.help .urgent{background:var(--berry);color:#fff}
+.help .urgent{background:var(--alert);color:var(--on-alert)}
 .help .calm{background:var(--mint);color:var(--ink)}
 .help h3{font-size:1.3rem;margin-bottom:8px}
 .help ul{margin:0;padding-left:20px}
@@ -159,7 +182,12 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
   .gallery figure:first-child{grid-column:1/-1;max-width:300px;justify-self:center}
   .alert{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* reduced motion: keep fades and colour, drop movement */
+@media (prefers-reduced-motion:reduce){
+  .chips a,.btn,.checklist li label{transform:none!important}
+  .checklist .box>span,.checklist .box::after{transform:none!important}
+  .bar i{transition:none}
+}
 </style>
 </head>
 <body>
@@ -167,9 +195,8 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
 
  <header class="hero">
   <div>
-    <p class="eyebrow">hello, lovely cat sitter!</p>
     <h1>Bagel's Sitter Guide<span>everything you need for a happy visit</span></h1>
-    <p class="intro">Thank you for looking after our girl. This page walks you through a visit from the moment you open the door to the moment you leave. Tick off the checklist as you go.</p>
+    <p class="intro"><b>Hello, lovely cat sitter!</b> Thank you for looking after our girl. This page walks you through a visit from the moment you open the door to the moment you leave. Tick off the checklist as you go.</p>
     <ul class="facts">
       <li>Name: Bagel</li>
       <li>Silver tabby</li>
@@ -197,7 +224,7 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
 </nav>
 
 <div class="alert" id="door" role="note">
-  <div class="paw" aria-hidden="true">!</div>
+  <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M3.5 21h17"/><circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
   <div>
     <h2>Watch the front door</h2>
     <p>Bagel likes to nap on the mat right inside the front door. She doesn't usually try to run out, but we don't know how she'll act with someone new.</p>
@@ -227,10 +254,10 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
     <li><input type="checkbox" id="c13"><label for="c13"><span class="box"><span>13</span></span><span><b>Give her a treat</b><small>Treat box on the table by the 3D printer. Wet food not eaten yet? Put the treat in front of her bowl.</small></span></label></li>
     <li><input type="checkbox" id="c14"><label for="c14"><span class="box"><span>14</span></span><span><b>Check where Bagel is, then leave</b><small>Close the door behind you carefully.</small></span></label></li>
   </ol>
-  <div class="progress">
+  <div class="progress" id="progress">
     <div class="bar" aria-hidden="true"><i id="bar"></i></div>
-    <span id="count" class="hand">0 of 14 done</span>
-    <button class="btn" id="reset" type="button">Start a new visit</button>
+    <span id="count" class="hand" aria-live="polite">0 of 14 done</span>
+    <button class="btn hold" id="reset" type="button"><span>Hold to start a new visit</span><span class="fill" aria-hidden="true">Hold to start a new visit</span></button>
   </div>
 </section>
 
@@ -290,7 +317,7 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
     </div>
     <div>
       <p>Put the bowl on the floor <b>to the left of the white automatic feeder</b>. That's where Bagel expects her wet food.</p>
-      <p style="margin-top:10px">She might not eat it straight away, and that's okay. <b>Leave the bowl out.</b> It gets washed at the next visit.</p>
+      <p>She might not eat it straight away, and that's okay. <b>Leave the bowl out.</b> It gets washed at the next visit.</p>
       <dl class="kv">
         <dt>Automatic feeder</dt><dd>Petkit Fresh Element Solo. It gives her dry kibble by itself.</dd>
         <dt>Water fountain</dt><dd>The white water bowl to the right of the feeder. Check every visit that it <b>has water</b> and <b>still has battery</b>. If the battery is low, let us know in the group chat.</dd>
@@ -322,7 +349,7 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
   <div class="split">
     <div>
       <p>Wash her bowl and put it back <b>on the counter next to the kitchen sink</b>, with the white spoon resting inside.</p>
-      <p style="margin-top:10px">If she hasn't finished, leave the bowl out and wash it at the start of your next visit. On your last day, just leave it; we'll clean it when we're back.</p>
+      <p>If she hasn't finished, leave the bowl out and wash it at the start of your next visit. On your last day, just leave it; we'll clean it when we're back.</p>
       <div class="callout"><b>Her bowl:</b> the raised white ceramic one with a blue wave and fish pattern on the stand.</div>
     </div>
     <div class="photos">
@@ -339,19 +366,19 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
 <section id="play">
   <div class="sec-head"><h2>Playtime</h2><span class="note">optional, 10 to 15 minutes</span></div>
   <div class="split flip">
-    <div class="photos">
+    <div class="photos stack">
       <figure class="polaroid tilt-l">
         <img src="images/sofa.jpg" alt="Gap between the sofa armrest and seat cushion where the wand toys are tucked" loading="lazy">
         <figcaption>wand toys hide in this sofa gap</figcaption>
       </figure>
-      <figure class="polaroid tilt-r" style="margin-top:22px">
+      <figure class="polaroid tilt-r">
         <img src="images/treat.jpg" alt="Clear plastic container of cat treats on the table next to the 3D printer (blurry photo)" loading="lazy">
         <figcaption>treat box, on the table by the 3D printer (sorry it's blurry!)</figcaption>
       </figure>
     </div>
     <div>
       <p>We have <b>two wand toys</b>, tucked into the gap between the sofa cushion and the left armrest. Slide them back in when you're done.</p>
-      <p style="margin-top:10px">Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!</p>
+      <p>Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!</p>
       <div class="tips">
         <div class="tip"><h3>Catch her eye</h3><p>Wiggle the wand quickly to get her attention.</p></div>
         <div class="tip"><h3>Hide and seek</h3><p>Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears.</p></div>
@@ -408,7 +435,7 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
   </div>
 </section>
 
-<div class="callout" style="margin-top:44px">
+<div class="callout thanks">
   <b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.
 </div>
 
@@ -422,19 +449,56 @@ footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
 <script>
 (function(){
   var KEY='bagel-visit-v5';
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var boxes=[].slice.call(document.querySelectorAll('#checklist input'));
-  var bar=document.getElementById('bar'),count=document.getElementById('count');
+  var bar=document.getElementById('bar'),count=document.getElementById('count'),progress=document.getElementById('progress'),reset=document.getElementById('reset');
+  var wasDone=false;
   function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(boxes.filter(function(b){return b.checked}).map(function(b){return b.id})))}catch(e){}}
   function update(){
-    var n=boxes.filter(function(b){return b.checked}).length;
-    bar.style.width=(n/boxes.length*100)+'%';
-    count.textContent=n===boxes.length?'All done, great job!':n+' of '+boxes.length+' done';
-    count.className=n===boxes.length?'hand done-msg':'hand';
+    var n=boxes.filter(function(b){return b.checked}).length,done=n===boxes.length;
+    bar.style.transform='translateX('+(n/boxes.length*100-100)+'%)';
+    count.textContent=done?'All done, great job!':n+' of '+boxes.length+' done';
+    count.className=done?'hand done-msg':'hand';
+    progress.classList.toggle('done',done);
+    reset.disabled=n===0;
+    // the first unticked step gets a gentle highlight so the sitter knows where they are
+    var next=boxes.filter(function(b){return !b.checked})[0];
+    boxes.forEach(function(b){b.parentNode.classList.toggle('next',b===next)});
+    if(done&&!wasDone&&count.animate&&!reduce){
+      count.animate([{opacity:0,transform:'translateY(4px)',filter:'blur(2px)'},{opacity:1,transform:'none',filter:'none'}],{duration:320,easing:'cubic-bezier(.23,1,.32,1)'});
+    }
+    wasDone=done;
   }
   var saved=load();boxes.forEach(function(b){b.checked=saved.indexOf(b.id)>-1;b.addEventListener('change',function(){save();update()})});
-  document.getElementById('reset').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false});save();update()});
+
+  // hold for a second to clear, so a stray tap can't wipe a visit in progress
+  var timer=null;
+  function startHold(){if(reset.disabled||timer)return;reset.classList.add('holding');timer=setTimeout(function(){boxes.forEach(function(b){b.checked=false});save();update();endHold()},1000)}
+  function endHold(){clearTimeout(timer);timer=null;reset.classList.remove('holding')}
+  reset.addEventListener('pointerdown',function(e){if(e.button===0)startHold()});
+  ['pointerup','pointerleave','pointercancel'].forEach(function(t){reset.addEventListener(t,endHold)});
+  reset.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();startHold()}});
+  reset.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')endHold()});
+  reset.addEventListener('blur',endHold);
+  reset.addEventListener('contextmenu',function(e){e.preventDefault()});
   update();
+
+  // highlight the chip for the section on screen
+  var nav=document.querySelector('.chips'),chips={};
+  [].forEach.call(nav.querySelectorAll('a'),function(a){chips[a.getAttribute('href').slice(1)]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting)return;
+        var a=chips[en.target.id];if(!a)return;
+        for(var k in chips)chips[k].removeAttribute('aria-current');
+        a.setAttribute('aria-current','true');
+        nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2,behavior:reduce?'auto':'smooth'});
+      });
+    },{rootMargin:'-30% 0px -60% 0px'});
+    Object.keys(chips).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
 })();
 </script>
 
