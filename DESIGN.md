@@ -114,7 +114,7 @@ A pink-led palette where saturated colour is reserved for state and action, on s
 - **Sticker Pink** (sticker-pink): sticker fills, the current slot's ring, bullets and the focus ring. Decorative and large-element only; never small text.
 
 ### Secondary
-- **Butter** (butter), **Mint** (mint), **Sky** (sky), **Lilac** (lilac): sticker fills only, cycled with Sticker Pink so the sheet reads as a set. Numbers on them are Plum Ink.
+- **Butter** (butter), **Mint** (mint), **Sky** (sky), **Lilac** (lilac): sticker outlines only, cycled with Sticker Pink so the sheet reads as a set. Each has a soft tint for the sticker body (pink #ffd6e4, butter #fff1c4, mint #d6f4e7, sky #dcefff, lilac #ebe1ff, slightly dimmer at night). Numbers on them are Plum Ink.
 
 ### Neutral
 - **Strawberry Milk** (strawberry-milk): the page ground.
@@ -166,7 +166,7 @@ Soft paper lift. Sheets and memos float on one ambient shadow; stickers carry th
 
 ## Shapes
 
-Everything is rounded: photos 14px, notes 18px, cards 20px, the memo 22px, buttons and chips fully pill-shaped. The memo's top edge is a pink binding strip punched with holes. Stickers are die-cut with a 3.5px white keyline in four silhouettes (circle, heart, star, flower), each set at a slight tilt.
+Everything is rounded: photos 14px, notes 18px, cards 20px, the memo 22px, buttons and chips fully pill-shaped. The memo's top edge is a pink binding strip punched with holes. Each sticker is die-cut in the shape of its step's icon (Phosphor Icons, fill weight, MIT): house, steaming bowl, jar, pot, fish, pill, water drop, snowflake (bold weight, since the fill one is a disc), food bowl, water drop, toilet, yarn, cookie and cat. The water drops are the bare outer shape, with no shine. Stickers whose real colour matters break the colour cycle: water and snow are Water Blue (#5ab2f0, soft #d2eaff), and Bagel's cat is Stone Grey (#a7a1a8, soft #ebe8ec). Layers, outside in: a white rim, a coloured outline following the icon's edge, the icon's body in the soft tint of that colour, and the step number in Plum Ink with a white halo. Each sticker sits at a slight tilt.
 
 ## Components
 
@@ -178,7 +178,7 @@ Everything is rounded: photos 14px, notes 18px, cards 20px, the memo 22px, butto
 - **Hold to start a new visit:** quiet button where a Raspberry fill sweeps left to right over 1s while held and snaps back in 200ms on release.
 
 ### Sticker sheet (signature)
-Fourteen round slots in a 7 × 2 grid inside a white card. Empty is a dashed Petal Line ring with the number; the current step has a solid Sticker Pink ring; done shows the sticker. Every slot is a button that opens its step.
+Fourteen round slots in a 7 × 2 grid inside a white card. Empty is a dashed Petal Line ring with the number; the current step has a solid Sticker Pink ring; done shows that step's icon-shaped sticker with its number still on top. Use one icon family only (Phosphor), so every sticker shares a line weight. Every slot is a button that opens its step.
 
 ### Memo
 A white card with a binding strip: photo with a zoom badge, step title, the dashed sticker slot holding the step number, the quantity, instructions, dashed-divider notes, and the sticky action bar. On Done the sticker pops in with a slight overshoot (300ms) on both the memo and the sheet, then the next memo slides up 8px into place (220ms). Reduced motion swaps instantly.
