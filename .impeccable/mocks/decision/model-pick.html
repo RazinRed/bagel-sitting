@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800;900&display=swap">
+<style>
+:root{--paper:#fff;--ink:#111;--orange:#f26b1d;--fog:#e9e9e6}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--paper);color:var(--ink);font-family:Figtree,system-ui,sans-serif;line-height:1.45}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1.5px solid var(--ink);font-weight:800;font-size:14px}
+.dots{display:flex;gap:4px}.dots i{width:14px;height:4px;background:var(--fog);border-radius:2px}.dots i.on{background:var(--ink)}
+.page{padding:18px}
+.num{font-weight:900;font-size:132px;line-height:.8;letter-spacing:-.04em}
+.title{font-weight:800;font-size:26px;line-height:1.1;margin-top:10px}
+.figure{margin-top:16px;height:250px;border:1.5px solid var(--ink);border-radius:4px;background:var(--fog);position:relative}
+.call{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:#fff;display:grid;place-items:center;font-weight:900}
+.parts{display:flex;gap:10px;margin-top:16px}
+.part{flex:1;border:1.5px solid var(--ink);border-radius:4px;padding:8px 10px}
+.part b{display:block;font-size:30px;font-weight:900;line-height:1}
+.part span{font-size:13px;font-weight:600}
+.warn{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:14px;font-weight:600}
+.warn i{flex:none;width:36px;height:36px;border:2.5px solid var(--orange);border-radius:50%}
+.nav{position:absolute;left:18px;right:18px;bottom:22px;display:flex;gap:10px}
+.nav a{flex:1;height:58px;border-radius:4px;display:grid;place-items:center;font-weight:900;font-size:18px;border:1.5px solid var(--ink)}
+.nav a.next{flex:2;background:var(--ink);color:#fff}
+</style></head><body>
+<div class="top"><span>Bagel · visit</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+<main class="page">
+  <div class="num">4</div>
+  <h1 class="title">Heat the water</h1>
+  <div class="figure"><span class="call" style="right:40px;bottom:46px">1</span></div>
+  <div class="parts">
+    <div class="part"><b>×2</b><span>press button 1</span></div>
+    <div class="part"><b>功能</b><span>lower right</span></div>
+  </div>
+  <p class="warn"><i></i>Glass kettle on the counter by the sink.</p>
+</main>
+<nav class="nav"><a>Back</a><a class="next">Next: scoop food</a></nav>
+</body></html>

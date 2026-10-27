@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T12:00:00+08:00",
+  "title": "Design System: Bagel's Sitter Guide",
+  "extensions": {
+    "colorMeta": {
+      "strawberry-milk": { "role": "neutral", "displayName": "Strawberry Milk", "canonical": "#ffe3ec", "dark": "#24121b", "tonalRamp": ["#3b1a27", "#5e2c40", "#8a4562", "#b66a88", "#d996b0", "#f0bfd1", "#ffe3ec", "#fff5f8"] },
+      "memo-white": { "role": "neutral", "displayName": "Memo White", "canonical": "#ffffff", "dark": "#36202b", "tonalRamp": ["#2a2226", "#4a4045", "#6e6469", "#948a8f", "#bab2b6", "#dcd6d9", "#f3f0f1", "#ffffff"] },
+      "blush-mat": { "role": "neutral", "displayName": "Blush Mat", "canonical": "#fff2f6", "dark": "#2d1823", "tonalRamp": ["#3a2028", "#5c3641", "#82515f", "#a97283", "#cc98a8", "#e8c0cc", "#f9e2e9", "#fff2f6"] },
+      "plum-ink": { "role": "neutral", "displayName": "Plum Ink", "canonical": "#3a1830", "dark": "#ffe8f0", "tonalRamp": ["#1f0c19", "#3a1830", "#5a2c4b", "#7c4568", "#a06889", "#c494ad", "#e3c3d4", "#f7e9f0"] },
+      "sticker-pink": { "role": "primary", "displayName": "Sticker Pink", "canonical": "#ff4f8b", "dark": "#ff6c9f", "tonalRamp": ["#4a0d23", "#7a173b", "#ad2456", "#e03572", "#ff4f8b", "#ff85ad", "#ffb8cf", "#ffe6ee"] },
+      "raspberry-ink": { "role": "primary", "displayName": "Raspberry Ink", "canonical": "#d81b60", "dark": "#ff8fb5", "tonalRamp": ["#3d0519", "#650a2b", "#930f40", "#d81b60", "#e8578a", "#f28fb0", "#f9c3d5", "#fdebf1"] },
+      "petal-line": { "role": "neutral", "displayName": "Petal Line", "canonical": "#ffc2d6", "dark": "#5c3446", "tonalRamp": ["#4a2433", "#6e3a4f", "#96556f", "#c07793", "#e29db6", "#ffc2d6", "#ffdbe7", "#fff0f5"] },
+      "butter": { "role": "secondary", "displayName": "Butter Sticker", "canonical": "#ffd66b", "dark": "#e9c35e", "tonalRamp": ["#3d2c05", "#66490b", "#946b14", "#c48f24", "#ecb443", "#ffd66b", "#ffe8a8", "#fff6dc"] },
+      "mint": { "role": "secondary", "displayName": "Mint Sticker", "canonical": "#7fd8b4", "dark": "#6fc2a1", "tonalRamp": ["#0b3326", "#145440", "#21785d", "#3a9e7d", "#5cbf9b", "#7fd8b4", "#b3ead3", "#e3f8ef"] },
+      "sky": { "role": "secondary", "displayName": "Sky Sticker", "canonical": "#9ad3ff", "dark": "#86bde6", "tonalRamp": ["#0b2a42", "#15456b", "#246497", "#3c85c0", "#67a9e0", "#9ad3ff", "#c4e5ff", "#e9f5ff"] },
+      "lilac": { "role": "secondary", "displayName": "Lilac Sticker", "canonical": "#cdb2ff", "dark": "#b69be6", "tonalRamp": ["#22124a", "#3a2373", "#56399e", "#7457c4", "#9779e0", "#cdb2ff", "#e1d2ff", "#f3edff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page title only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles; memo step title from 720px (1.3rem on phones)." },
+      "title": { "displayName": "Title", "purpose": "Door note and help-card titles." },
+      "quantity": { "displayName": "Quantity", "purpose": "The one value a step hinges on; 2.3rem for long values, never wraps." },
+      "body": { "displayName": "Body", "purpose": "Instructions and notes." },
+      "label": { "displayName": "Label", "purpose": "Progress lines, part headers, captions." }
+    },
+    "shadows": [
+      { "name": "sheet-lift", "value": "0 1px 2px rgba(58,24,48,.08), 0 10px 24px -14px rgba(58,24,48,.45)", "purpose": "Memo, sticker sheet, overview, calm cards, door note." },
+      { "name": "sticker", "value": "drop-shadow(0 1.5px 1.5px rgba(58,24,48,.28))", "purpose": "Die-cut stickers only (CSS filter)." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.23,1,.32,1)", "purpose": "Press feedback, memo hand-over, hold-fill release." },
+      { "name": "ease-pop", "value": "cubic-bezier(.34,1.45,.64,1)", "purpose": "Sticker landing, 300ms, slight overshoot." },
+      { "name": "press", "value": "transform: scale(.97) 160ms", "purpose": "Every pressable element." },
+      { "name": "hold-fill", "value": "clip-path 1s linear / 200ms ease-out on release", "purpose": "Hold to start a new visit." }
+    ],
+    "breakpoints": [
+      { "name": "memo-wide", "value": "720px" },
+      { "name": "two-column", "value": "980px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action on a memo: Stick it! Done, Next step.",
+      "html": "<button class=\"ds-btn-primary\">Stick it! Done</button>",
+      "css": ".ds-btn-primary{height:56px;padding:0 20px;border:0;border-radius:999px;background:#d81b60;color:#fff;font:900 1.15rem 'M PLUS Rounded 1c',system-ui,sans-serif;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}.ds-btn-primary:active{transform:scale(.97)}.ds-btn-primary:focus-visible{outline:3px solid #ff4f8b;outline-offset:2px}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Back, Skip, Undo.",
+      "html": "<button class=\"ds-btn-quiet\">Back</button>",
+      "css": ".ds-btn-quiet{height:56px;padding:0 20px;border:0;border-radius:999px;background:#fff2f6;color:#3a1830;font:900 1rem 'M PLUS Rounded 1c',system-ui,sans-serif;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}.ds-btn-quiet:active{transform:scale(.97)}.ds-btn-quiet:focus-visible{outline:3px solid #ff4f8b;outline-offset:2px}"
+    },
+    {
+      "name": "Sticker Slot",
+      "kind": "custom",
+      "description": "Empty, current and done states of a step on the sticker sheet.",
+      "html": "<div class=\"ds-slots\"><span class=\"ds-slot ds-done\"><svg viewBox=\"0 0 48 48\"><g fill=\"#ff4f8b\" stroke=\"#fff\" stroke-width=\"3.5\" paint-order=\"stroke\"><path d=\"M24 41s-16-9.3-16-21C8 14 12.4 9 18 9c2.8 0 4.8 1.4 6 3.3C25.2 10.4 27.2 9 30 9c5.6 0 10 5 10 11 0 11.7-16 21-16 21z\"/></g><text x=\"24\" y=\"25\" text-anchor=\"middle\" dominant-baseline=\"central\" font-weight=\"900\" font-size=\"15\" fill=\"#fff\">3</text></svg></span><span class=\"ds-slot ds-now\">4</span><span class=\"ds-slot\">5</span></div>",
+      "css": ".ds-slots{display:flex;gap:6px;background:#fff;border-radius:20px;padding:12px}.ds-slot{width:46px;height:46px;border-radius:50%;border:2px dashed #ffc2d6;display:grid;place-items:center;font:800 .9rem 'M PLUS Rounded 1c',system-ui,sans-serif;color:#3a1830}.ds-now{border:2.5px solid #ff4f8b;color:#d81b60;font-weight:900}.ds-done{border:0}.ds-done svg{width:52px;height:52px;filter:drop-shadow(0 1.5px 1.5px rgba(58,24,48,.28));transform:rotate(-8deg)}"
+    },
+    {
+      "name": "Door Note",
+      "kind": "card",
+      "refersTo": "door-note",
+      "description": "Safety warning on the first and last steps.",
+      "html": "<div class=\"ds-door\"><span class=\"ds-door-ic\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21\"/><path d=\"M3.5 21h17\"/></svg></span><div><b>Watch the front door</b><p>Bagel likes to nap on the mat right inside the front door.</p></div></div>",
+      "css": ".ds-door{display:grid;grid-template-columns:auto 1fr;gap:12px;background:#d81b60;color:#fff;border-radius:18px;padding:12px 14px;font:500 .95rem/1.5 'M PLUS Rounded 1c',system-ui,sans-serif}.ds-door b{font-weight:900;font-size:1.25rem}.ds-door p{margin:2px 0 0}.ds-door-ic{width:40px;height:40px;border-radius:50%;background:#fff;color:#d81b60;display:grid;place-items:center}"
+    },
+    {
+      "name": "Step Row",
+      "kind": "nav",
+      "description": "A row in the whole-visit list; the viewed step gets an inset pink ring.",
+      "html": "<button class=\"ds-row ds-viewing\"><span class=\"ds-mini\">4</span><span class=\"ds-t\">Start heating the water</span><span class=\"ds-q\">×2 presses</span></button>",
+      "css": ".ds-row{width:100%;display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;text-align:left;padding:8px;border:0;border-radius:14px;background:none;color:#3a1830;font:800 1rem/1.3 'M PLUS Rounded 1c',system-ui,sans-serif;cursor:pointer}.ds-row:hover{background:#fff2f6}.ds-row:focus-visible{outline:3px solid #ff4f8b;outline-offset:2px}.ds-viewing{background:#fff2f6;box-shadow:inset 0 0 0 2px #ff4f8b}.ds-mini{width:36px;height:36px;border-radius:50%;border:2px dashed #ffc2d6;display:grid;place-items:center;font-size:.9rem}.ds-q{color:#d81b60;font-weight:900}"
+    },
+    {
+      "name": "Fact Chip",
+      "kind": "chip",
+      "refersTo": "fact-chip",
+      "description": "Short facts about Bagel.",
+      "html": "<span class=\"ds-chip\">Shy with new people</span>",
+      "css": ".ds-chip{display:inline-block;background:#fff;color:#3a1830;border-radius:999px;padding:3px 12px;font:800 .88rem 'M PLUS Rounded 1c',system-ui,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Sticker Sheet",
+    "overview": "The guide is a page torn from a kawaii memo pad, with Bagel's sticker sheet clipped on top. Each step of the visit is one memo; finishing it earns a die-cut sticker, so progress is literally a sheet filling up. It is cute and pink because the owners pinned that, but the cuteness lives in materials (strawberry-milk paper, keylined stickers, rounded lettering) rather than in decoration, so the task always reads first.",
+    "keyCharacteristics": [
+      "Strawberry-milk ground, white memo sheets, plum ink, raspberry for anything the sitter must act on or read exactly.",
+      "One rounded face for everything, including the kettle's 功能 / 取消 label.",
+      "Die-cut stickers (circle, heart, star, flower) in pink, butter, mint, sky and lilac mark done-state and nothing else.",
+      "A real night mode for a dim flat: deep rose, low glare, photos slightly dimmed."
+    ],
+    "rules": [
+      { "name": "The Stickers Mean Done Rule", "body": "A sticker appears only where a step is finished. Empty is always a dashed outline with the step number; never use sticker shapes as decoration.", "section": "colors" },
+      { "name": "The Raspberry Reads Rule", "body": "Any pink text smaller than about 24px uses Raspberry Ink, not Sticker Pink.", "section": "colors" },
+      { "name": "The One Number Rule", "body": "Each step has at most one poster-size quantity, set as a true fraction or symbol (⅓, ½, ×2, 40°C), never spelled out.", "section": "typography" },
+      { "name": "The No Kicker Rule", "body": "No small label sits above a heading. Progress lives in the sticker sheet card; the step number lives in the memo's sticker slot.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep the current step, its quantity and the Done button visible together on a 390 × 844 phone.",
+      "Do put every owner detail inside the step that needs it, next to that step's photo.",
+      "Do use Raspberry Ink for any pink text below about 24px.",
+      "Do keep photos at their real proportions and offer tap to enlarge."
+    ],
+    "donts": [
+      "Don't use stickers, hearts or stars as decoration; they mean \"done\".",
+      "Don't set a small uppercase label above a heading.",
+      "Don't let Sticker Pink carry body-size text; it fails contrast on white.",
+      "Don't brighten warnings in night mode; they use the deep alert colour, not glowing pink."
+    ]
+  }
+}

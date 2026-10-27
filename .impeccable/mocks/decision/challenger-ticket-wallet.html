@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Archivo:wght@500;700;900&display=swap">
+<style>
+:root{--stock:#fbfaf5;--navy:#1b2a52;--red:#c8102e;--carbon:#4b3b8f}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--navy);color:var(--navy);font-family:Archivo,system-ui,sans-serif;line-height:1.4}
+.wallet{color:#fff;padding:16px 18px 12px}
+.wallet h1{font-family:"Archivo Narrow";font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.wallet h2{font-weight:900;font-size:28px;line-height:1.05;margin-top:4px}
+.route{display:flex;align-items:center;margin-top:14px;font-family:"Archivo Narrow";font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.route span{flex:none}.route i{flex:1;height:2px;background:rgba(255,255,255,.4);margin:0 6px}.route i.done{background:var(--red)}
+.coupon{background:var(--stock);margin:12px 14px 0;border-radius:6px;position:relative}
+.head{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px dashed var(--navy);font-family:"Archivo Narrow";font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.fields{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--navy)}
+.f{padding:8px 14px;border-right:1px solid var(--navy)}.f:last-child{border-right:0}
+.f small{display:block;font-family:"Archivo Narrow";font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.f b{color:var(--carbon);font-size:30px;font-weight:900;line-height:1.1}
+.leg{padding:12px 14px}
+.leg h3{font-size:24px;font-weight:900;line-height:1.1}
+.leg p{margin-top:6px;font-size:15px}
+.photo{margin:0 14px 14px;height:170px;background:#d6d3c8;border-radius:3px}
+.tear{height:58px;margin:0 14px 14px;background:var(--red);color:#fff;border-radius:999px;display:grid;place-items:center;font-weight:900;font-size:18px;letter-spacing:.04em;text-transform:uppercase}
+.stack{margin:-4px 22px 0;height:14px;background:#e9e6da;border-radius:0 0 6px 6px}
+.stack+.stack{margin:0 30px;background:#d9d5c7}
+.used{position:absolute;right:16px;top:44px;border:3px solid var(--red);color:var(--red);font-weight:900;padding:2px 8px;transform:rotate(-8deg);font-size:14px;letter-spacing:.1em;opacity:0}
+</style></head><body>
+<header class="wallet">
+  <h1>Bagel's visit · coupon book</h1>
+  <h2>Coupon 4 of 14</h2>
+  <div class="route"><span>Door</span><i class="done"></i><span>Food</span><i></i><span>Litter</span><i></i><span>Play</span><i></i><span>Door</span></div>
+</header>
+<article class="coupon">
+  <div class="head"><span>Coupon 04</span><span>3 used · 11 remain</span></div>
+  <div class="fields"><div class="f"><small>Presses</small><b>×2</b></div><div class="f"><small>Button</small><b>Lower R</b></div></div>
+  <div class="leg"><h3>Heat the water</h3><p>Glass kettle. Press 功能 / 取消 twice to start heating.</p></div>
+  <div class="photo"></div>
+  <div class="tear">Tear off · done</div>
+</article>
+<div class="stack"></div><div class="stack"></div>
+</body></html>

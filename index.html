@@ -3,504 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<meta name="theme-color" content="#ffe3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#24121b" media="(prefers-color-scheme: dark)">
 <title>Bagel's Sitter Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&family=Nunito:wght@400;600;700;800&family=Mali:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap">
 <style>
-/* Layout: a scrapbook sitter's notebook. Polaroid photos taped beside numbered steps, a tickable visit checklist, sticky chip nav. */
+/* Layout: a kawaii memo pad. One step at a time on a memo sheet; each finished step earns a sticker on Bagel's sticker sheet. */
 :root{
-  --bg:#fff4f6;
-  --paper:#ffffff;
-  --blush:#ffd9e2;
-  --rose:#f58aa6;
-  --berry:#c2325f;
-  --on-berry:#ffffff;
-  --alert:#c2325f;
+  --ground:#ffe3ec;
+  --sheet:#ffffff;
+  --mat:#fff2f6;
+  --ink:#3a1830;
+  --pink:#ff4f8b;
+  --pink-ink:#d81b60;
+  --on-pink:#ffffff;
+  --alert:#d81b60;
   --on-alert:#ffffff;
-  --ink:#4a2330;
-  --soft:#8a5a68;
-  --line:#f6c3d1;
-  --mint:#d9f2e6;
-  --mint-ink:#2f6b52;
-  --tape:rgba(255,200,215,.75);
-  --shadow:0 2px 0 rgba(194,50,95,.10), 0 10px 24px -12px rgba(194,50,95,.35);
+  --line:#ffc2d6;
+  --butter:#ffd66b;
+  --mint:#7fd8b4;
+  --sky:#9ad3ff;
+  --lilac:#cdb2ff;
+  --sticker-ink:#3a1830;
+  --shadow:0 1px 2px rgba(58,24,48,.08),0 10px 24px -14px rgba(58,24,48,.45);
+  --sticker-shadow:drop-shadow(0 1.5px 1.5px rgba(58,24,48,.28));
+  --photo-filter:none;
   --ease-out:cubic-bezier(.23,1,.32,1);
-  --display:"Sniglet","Nunito","Arial Rounded MT Bold",system-ui,sans-serif;
-  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --hand:"Mali","Comic Sans MS","Nunito",cursive;
+  --ease-pop:cubic-bezier(.34,1.45,.64,1);
+  --font:"M PLUS Rounded 1c",ui-rounded,"Hiragino Maru Gothic ProN",system-ui,sans-serif;
+  color-scheme:light;
 }
+/* night mode: a dim flat, so a low-glare rose lightbox rather than an inverted day theme */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--on-berry:#2a1219;--alert:#8a2648;--on-alert:#ffffff;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}}
+  --ground:#24121b;--sheet:#36202b;--mat:#2d1823;--ink:#ffe8f0;--pink:#ff6c9f;--pink-ink:#ff8fb5;--on-pink:#2a0f1c;--alert:#8f2452;--on-alert:#ffe8f0;--line:#5c3446;
+  --butter:#e9c35e;--mint:#6fc2a1;--sky:#86bde6;--lilac:#b69be6;--sticker-ink:#2a0f1c;
+  --shadow:0 10px 24px -14px rgba(0,0,0,.7);--sticker-shadow:drop-shadow(0 1.5px 1.5px rgba(0,0,0,.5));--photo-filter:brightness(.88);color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#24151b;--paper:#321e26;--blush:#4a2a36;--rose:#ff9db7;--berry:#ff86a8;--on-berry:#2a1219;--alert:#8a2648;--on-alert:#ffffff;--ink:#fbe7ed;--soft:#d3a9b6;--line:#5a3542;--mint:#1f3a2f;--mint-ink:#9fe0c2;--tape:rgba(255,157,183,.35);--shadow:0 10px 24px -12px rgba(0,0,0,.6);color-scheme:dark}
+  --ground:#24121b;--sheet:#36202b;--mat:#2d1823;--ink:#ffe8f0;--pink:#ff6c9f;--pink-ink:#ff8fb5;--on-pink:#2a0f1c;--alert:#8f2452;--on-alert:#ffe8f0;--line:#5c3446;
+  --butter:#e9c35e;--mint:#6fc2a1;--sky:#86bde6;--lilac:#b69be6;--sticker-ink:#2a0f1c;
+  --shadow:0 10px 24px -14px rgba(0,0,0,.7);--sticker-shadow:drop-shadow(0 1.5px 1.5px rgba(0,0,0,.5));--photo-filter:brightness(.88);color-scheme:dark}
 
 *{box-sizing:border-box}
-html{scrollbar-color:var(--rose) var(--bg);-webkit-tap-highlight-color:transparent}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{
-  background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
-  background-image:radial-gradient(var(--line) 1.2px,transparent 1.3px);background-size:22px 22px;
-}
-::selection{background:var(--berry);color:var(--on-berry)}
-:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
-.wrap{max-width:980px;margin:0 auto;padding-inline:18px;padding-block:20px 64px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.1;margin:0}
-p{margin:0}
-.hand{font-family:var(--hand)}
+html{scrollbar-color:var(--pink) var(--ground);-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;font-weight:500;
+  padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+::selection{background:var(--pink-ink);color:var(--on-pink)}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px;border-radius:12px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:900;line-height:1.15;text-wrap:balance}
+b,strong{font-weight:800}
+.nb{white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+img{display:block;max-width:100%}
+.wrap{max-width:600px;margin:0 auto;padding:16px 16px 48px}
+.press{transition:transform .16s var(--ease-out)}
+.press:active{transform:scale(.97)}
 
-/* hero */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding-block:18px 26px}
-.hero h1{font-size:clamp(2.6rem,7vw,4.4rem);font-weight:800;color:var(--berry);letter-spacing:-.5px}
-.hero h1 span{display:block;color:var(--ink);font-size:.55em;font-weight:400;margin-top:6px}
-.hero .intro{margin-top:16px;max-width:46ch;color:var(--soft)}
-.hero .intro b{color:var(--berry);font-family:var(--hand);font-weight:600}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
-.facts li{background:var(--paper);border:2px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.9rem}
+/* header */
+.top{display:flex;gap:12px;align-items:center}
+.face{flex:none;width:56px;height:56px;border-radius:50%;border:4px solid #fff;box-shadow:var(--shadow);overflow:hidden;background:var(--line)}
+.face img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.top h1{font-size:1.95rem}
+.status{font-weight:800;font-size:.95rem;font-variant-numeric:tabular-nums}
+.hello{margin-top:12px;font-size:.95rem}
+.hello b{color:var(--pink-ink)}
 
-.polaroid{background:var(--paper);padding:10px 10px 12px;border-radius:6px;box-shadow:var(--shadow);position:relative;margin:0}
-.polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px;background:var(--blush)}
-.polaroid.wide img{aspect-ratio:4/3}
-.polaroid figcaption{font-family:var(--hand);text-align:center;margin-top:8px;color:var(--soft);font-size:.95rem;line-height:1.35}
-.polaroid::before{content:"";position:absolute;top:-10px;left:50%;width:78px;height:22px;transform:translateX(-50%) rotate(-3deg);background:var(--tape);border-radius:2px}
-.tilt-l{transform:rotate(-2.5deg)}.tilt-r{transform:rotate(2deg)}
-.hero .polaroid{max-width:340px;justify-self:center}
+/* sticker sheet */
+.sheet-card{margin-top:14px;background:var(--sheet);border-radius:20px;padding:12px;box-shadow:var(--shadow)}
+.sheet{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.where{display:flex;justify-content:space-between;gap:12px;margin-top:10px;padding:8px 4px 0;border-top:1.5px dashed var(--line);font-weight:800;font-size:.92rem}
+.where span:last-child{font-variant-numeric:tabular-nums;color:var(--pink-ink)}
+.slot{aspect-ratio:1;display:grid;place-items:center;border-radius:50%;position:relative}
+.slot .ring{grid-area:1/1;width:100%;height:100%;border-radius:50%;border:2px dashed var(--line)}
+.slot .n{grid-area:1/1;font-weight:800;font-size:.9rem;font-variant-numeric:tabular-nums}
+.slot svg{grid-area:1/1;width:112%;height:112%;filter:var(--sticker-shadow)}
+.slot.now .ring{border:2.5px solid var(--pink)}
+.slot.now .n{color:var(--pink-ink);font-weight:900}
+.slot.viewing:not(.now) .ring{border-style:solid;border-color:var(--ink)}
+.slot.is-done .ring,.slot.is-done .n{display:none}
+@media (hover:hover) and (pointer:fine){.slot:not(.is-done):hover .ring{border-color:var(--pink)}}
 
-/* nav */
-.chips{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;overflow-x:auto;padding-block:10px;margin-inline:-18px;padding-inline:18px;background:linear-gradient(var(--bg) 70%,transparent);scrollbar-width:none;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 32px),transparent)}
-.chips::-webkit-scrollbar{display:none}
-.chips a{flex:none;text-decoration:none;color:var(--berry);font-weight:800;font-size:.9rem;background:var(--paper);border:2px solid var(--rose);border-radius:999px;padding:5px 14px;
-  transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .16s var(--ease-out)}
-.chips a:active{transform:scale(.96)}
-.chips a[aria-current]{background:var(--berry);border-color:var(--berry);color:var(--on-berry)}
-@media (hover:hover) and (pointer:fine){.chips a:not([aria-current]):hover{background:var(--blush)}}
+/* door note */
+.door{margin-top:14px;background:var(--alert);color:var(--on-alert);border-radius:18px;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;box-shadow:var(--shadow)}
+.door .ic{width:40px;height:40px;border-radius:50%;background:var(--on-alert);color:var(--alert);display:grid;place-items:center}
+.door h2{font-size:1.25rem}
+.door p{font-size:.95rem;margin-top:2px}
 
-/* alert */
-.alert{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--alert);color:var(--on-alert);border-radius:22px;padding:20px 22px;margin-block:18px 8px;box-shadow:var(--shadow);scroll-margin-top:72px}
-.alert .icon{background:var(--on-alert);color:var(--alert);width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
-.alert h2{font-size:1.5rem}
-.alert p{margin-top:6px;max-width:62ch}
-.alert ul{margin:8px 0 0;padding-left:20px}
-.alert li+li{margin-top:4px}
+/* memo */
+.memo{margin-top:16px;background:var(--sheet);border-radius:22px;box-shadow:var(--shadow);overflow:clip}
+.memo::before{content:"";display:block;height:14px;background:radial-gradient(circle at 9px 7px,var(--ground) 3.5px,transparent 4px) 0 0/18px 14px repeat-x,var(--line)}
+.memo-in{padding:12px 14px 0;display:grid;grid-template-columns:1fr;column-gap:14px;align-items:start}
+.memo-in.has-photo{grid-template-columns:42% 1fr}
+.memo-in>.photo{grid-column:1;grid-row:1}
+.memo-in.has-photo>.what{grid-column:2}
+.rest,.actions{grid-column:1/-1}
+.photo{display:block;width:100%;position:relative;border-radius:14px;overflow:hidden;background:var(--mat);aspect-ratio:3/4}
+.photo img{width:100%;height:100%;object-fit:cover;filter:var(--photo-filter)}
+.photo.landscape{aspect-ratio:4/3}
+.photo .zoom{position:absolute;right:6px;bottom:6px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.92);color:#3a1830;display:grid;place-items:center}
+.what{display:grid;grid-template-columns:1fr auto;gap:6px 8px;align-content:start;min-width:0}
+.what>*:not(h2):not(.mark){grid-column:1/-1}
+.mark{width:48px;height:48px;display:grid;place-items:center}
+.mark .ring{grid-area:1/1;width:44px;height:44px;border-radius:50%;border:2.5px dashed var(--pink)}
+.mark .n{grid-area:1/1;font-weight:900;color:var(--pink-ink);font-variant-numeric:tabular-nums}
+.mark svg{grid-area:1/1;width:54px;height:54px;filter:var(--sticker-shadow)}
+.what h2{font-size:1.3rem;padding-top:6px}
+@media (min-width:720px){.what h2{font-size:1.56rem}}
+.tag{justify-self:start;font-size:.78rem;font-weight:800;border:1.5px solid var(--pink-ink);color:var(--pink-ink);border-radius:999px;padding:0 8px}
+.qty{display:flex;align-items:baseline;gap:6px;color:var(--pink-ink);margin-top:2px}
+.qty b{font-size:3.2rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}
+.qty.long b{font-size:2.3rem}
+.qty span{font-weight:900;font-size:1.05rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.pair div{background:var(--mat);border-radius:14px;padding:8px 10px}
+.pair small{display:block;font-weight:800;font-size:.8rem}
+.pair b{display:block;color:var(--pink-ink);font-size:2rem;font-weight:900;line-height:1.1}
+.pair span{font-size:.85rem}
+.do{margin-top:12px;font-size:1.02rem}
+.more{list-style:none;margin:10px 0 0;padding:0;border-top:1.5px dashed var(--line)}
+.more li{padding:8px 0 0 22px;position:relative;font-size:.95rem}
+.more li::before{content:"";position:absolute;left:4px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--pink)}
+.tips{display:grid;gap:8px;margin-top:12px}
+.tips div{background:var(--mat);border-radius:14px;padding:8px 12px;font-size:.92rem}
+.tips b{display:block;color:var(--pink-ink)}
+.thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.thumbs .photo{aspect-ratio:1}
+.thumbs figcaption{font-size:.82rem;margin-top:4px;font-weight:700}
+.thumbs figure{margin:0}
+/* the action bar sticks to the bottom of the screen so Done is always in thumb reach */
+.actions{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:10px;margin:4px -14px 0;padding:18px 14px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--sheet) 16px)}
+.btn{height:56px;border-radius:999px;font-weight:900;font-size:1.15rem;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 20px}
+.btn.primary{background:var(--pink-ink);color:var(--on-pink)}
+.btn.quiet{background:var(--mat);color:var(--ink);font-size:1rem}
+.btn:disabled{opacity:.4;cursor:default}
+.btn:disabled:active{transform:none}
+.next{margin:10px 6px 0;font-size:.92rem;display:flex;gap:6px;align-items:baseline}
+.next b{color:var(--pink-ink)}
 
-/* sections */
-section{padding-top:40px;scroll-margin-top:72px}
-.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.sec-head h2{font-size:clamp(1.8rem,4.5vw,2.4rem);color:var(--berry)}
-.sec-head .note{font-family:var(--hand);color:var(--soft)}
-.heart-rule{border:0;height:14px;margin:36px 0 0;background:radial-gradient(circle,var(--rose) 2px,transparent 2.5px) center/18px 14px repeat-x;opacity:.7}
+/* all done */
+.finish{text-align:center;padding:22px 18px 20px}
+.finish .big{display:flex;justify-content:center;margin-bottom:6px}
+.finish .big svg{width:84px;height:84px;filter:var(--sticker-shadow)}
+.finish h2{font-size:1.7rem}
+.finish p{margin-top:6px}
+.treat-note{background:var(--mat);border-radius:16px;padding:12px 14px;margin-top:14px;text-align:left}
+.treat-note b{color:var(--pink-ink)}
 
-.split{display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:start}
-.split.flip{grid-template-columns:300px 1fr}
-.split>*{min-width:0}
-.split p+p{margin-top:10px}
-.stack{display:grid;gap:22px}
-
-/* visit checklist */
-.checklist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.checklist li label{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer;-webkit-user-select:none;user-select:none;
-  transition:border-color .2s ease,background-color .2s ease,transform .16s var(--ease-out)}
-.checklist li label:active{transform:scale(.985)}
-@media (hover:hover) and (pointer:fine){.checklist li label:hover{border-color:var(--rose)}}
-.checklist input{position:absolute;opacity:0;pointer-events:none}
-.checklist .box{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--rose);display:grid;place-items:center;font-family:var(--display);font-weight:800;color:var(--berry);font-size:.95rem;font-variant-numeric:tabular-nums;
-  transition:background-color .2s ease,border-color .2s ease}
-.checklist .box>span,.checklist .box::after{grid-area:1/1;transition:opacity .2s var(--ease-out),transform .2s var(--ease-out)}
-.checklist .box::after{content:"";width:16px;height:16px;background:var(--mint);opacity:0;transform:scale(.6);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center/contain no-repeat}
-.checklist b{display:block;font-weight:800}
-.checklist small{color:var(--soft);font-size:.92rem}
-.checklist li.next label{border-color:var(--rose);box-shadow:var(--shadow)}
-.checklist li.next .box{background:var(--blush)}
-.checklist input:checked + label{background:var(--mint);border-color:transparent;box-shadow:none}
-.checklist input:checked + label .box{background:var(--mint-ink);border-color:var(--mint-ink)}
-.checklist input:checked + label .box>span{opacity:0;transform:scale(.6)}
-.checklist input:checked + label .box::after{opacity:1;transform:none}
-.checklist input:checked + label b{text-decoration:line-through;text-decoration-color:var(--mint-ink)}
-.checklist input:focus-visible + label{outline:3px solid var(--rose);outline-offset:2px}
-.progress{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
-.bar{flex:1;min-width:140px;height:12px;border-radius:99px;background:var(--blush);overflow:hidden}
-.bar i{display:block;height:100%;width:100%;background:var(--rose);border-radius:99px;transform:translateX(-100%);transition:transform .35s var(--ease-out),background-color .3s ease}
-.progress.done .bar i{background:var(--mint-ink)}
-.done-msg{font-family:var(--hand);color:var(--mint-ink)}
-
-.btn{font:inherit;font-weight:800;border:2px solid var(--rose);background:var(--paper);color:var(--berry);border-radius:999px;padding:6px 16px;cursor:pointer;
-  transition:background-color .15s ease,border-color .15s ease,opacity .15s ease,transform .16s var(--ease-out)}
-.btn:active:not(:disabled){transform:scale(.97)}
-.btn:disabled{opacity:.45;cursor:default}
-@media (hover:hover) and (pointer:fine){.btn:hover:not(:disabled){background:var(--blush)}}
-/* hold-to-reset: a clipped copy of the label fills left to right while held */
-.hold{position:relative;overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
-.hold .fill{position:absolute;inset:0;display:grid;place-items:center;background:var(--berry);color:var(--on-berry);clip-path:inset(0 100% 0 0);transition:clip-path .2s var(--ease-out)}
+/* hold to reset: a clipped copy of the label fills left to right while held */
+.hold{position:relative;overflow:hidden;-webkit-touch-callout:none;margin-top:14px;width:100%;background:var(--mat);color:var(--ink);font-size:1rem}
+.hold .fill{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--pink-ink);color:var(--on-pink);clip-path:inset(0 100% 0 0);transition:clip-path .2s var(--ease-out)}
 .hold.holding .fill{clip-path:inset(0 0 0 0);transition:clip-path 1s linear}
 
-/* steps */
-.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:14px}
-.steps li{counter-increment:s;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start}
-.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--on-berry);background:var(--berry);width:38px;height:38px;border-radius:12px 12px 12px 4px;display:grid;place-items:center}
-.steps li>div{padding-top:6px}
-.steps strong{color:var(--berry)}
+/* reference sections */
+section{margin-top:32px}
+section>h2{font-size:1.56rem;margin:0 4px 10px}
+.overview{background:var(--sheet);border-radius:20px;box-shadow:var(--shadow);margin-top:24px;padding-top:14px}
+.overview>h2{font-size:1.25rem;padding:0 16px 2px}
+.list{list-style:none;margin:0;padding:0 8px 8px}
+.list button.viewing{background:var(--mat);box-shadow:inset 0 0 0 2px var(--pink)}
+.list button.is-done .t{text-decoration:line-through;text-decoration-color:var(--pink);text-decoration-thickness:2px}
+.list button[data-go]{width:100%;display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;text-align:left;padding:8px;border-radius:14px}
+.list .slot{width:36px}
+.list .t{font-weight:800;line-height:1.3}
+.list .q{color:var(--pink-ink);font-weight:900}
+.list .half{padding:12px 8px 2px;font-size:.92rem;font-weight:900;color:var(--pink-ink)}
+@media (hover:hover) and (pointer:fine){.list button[data-go]:hover{background:var(--mat)}}
+.list .reset-wrap{padding:0 8px 8px}
+.help{display:grid;gap:10px}
+.card{border-radius:20px;padding:14px 16px}
+.card h3{font-size:1.25rem;margin-bottom:4px}
+.card ul{margin:0;padding-left:20px}
+.urgent{background:var(--alert);color:var(--on-alert)}
+.calm{background:var(--sheet);box-shadow:var(--shadow)}
+.calm h3{color:var(--pink-ink)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gallery figure{margin:0}
+.gallery .photo{aspect-ratio:3/4}
+.gallery figcaption{font-size:.82rem;font-weight:700;margin-top:4px;line-height:1.35}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.facts li{background:var(--sheet);border-radius:999px;padding:3px 12px;font-weight:800;font-size:.88rem}
+footer{text-align:center;margin-top:36px}
+footer .sig{font-weight:900;font-size:1.3rem;color:var(--pink-ink)}
 
-.callout{background:var(--blush);border-radius:18px;padding:14px 16px;margin-top:16px}
-.callout b{color:var(--berry)}
-.thanks{margin-top:44px}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:14px}
-.kv dt{font-weight:800;color:var(--berry)}
-.kv dd{margin:0}
-kbd{font-family:var(--body);font-weight:800;background:var(--paper);border:2px solid var(--line);border-bottom-width:4px;border-radius:8px;padding:0 7px}
+/* photo zoom */
+dialog{border:0;padding:0;background:transparent;max-width:min(94vw,560px);max-height:92vh}
+dialog::backdrop{background:rgba(36,18,27,.72)}
+dialog figure{margin:0;background:var(--sheet);border-radius:20px;padding:10px;color:var(--ink)}
+dialog img{max-height:76vh;width:auto;margin:0 auto;border-radius:12px}
+dialog figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 4px 2px;font-weight:700}
+dialog .btn{height:44px;font-size:1rem}
 
-.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.tip{background:var(--paper);border-radius:18px;padding:16px;border:2px solid var(--line)}
-.tip h3{font-size:1.15rem;color:var(--berry);margin-bottom:6px}
-
-/* gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
-.gallery .polaroid img{aspect-ratio:3/4}
-
-/* help */
-.help{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.help .card{border-radius:20px;padding:18px}
-.help .urgent{background:var(--alert);color:var(--on-alert)}
-.help .calm{background:var(--mint);color:var(--ink)}
-.help h3{font-size:1.3rem;margin-bottom:8px}
-.help ul{margin:0;padding-left:20px}
-.help .calm h3{color:var(--mint-ink)}
-
-footer{margin-top:56px;text-align:center;font-family:var(--hand);color:var(--soft)}
-footer .sig{font-family:var(--display);color:var(--berry);font-size:1.4rem}
-
-@media (max-width:760px){
-  .hero{grid-template-columns:1fr}
-  .hero .polaroid{max-width:280px;grid-row:1}
-  .split,.split.flip{grid-template-columns:1fr}
-  .split .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px}
-  .tips,.help{grid-template-columns:1fr}
-  .gallery{grid-template-columns:1fr 1fr}
-  .gallery figure:first-child{grid-column:1/-1;max-width:300px;justify-self:center}
-  .alert{grid-template-columns:1fr}
+/* wide screens: the whole visit sits beside the current step */
+@media (min-width:980px){
+  .wrap{max-width:1040px}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+  .overview{margin-top:0;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;scrollbar-width:thin}
 }
-/* reduced motion: keep fades and colour, drop movement */
+@media (min-width:720px){
+  .wrap{padding-top:28px}
+  .memo-in.has-photo{grid-template-columns:230px 1fr;grid-template-rows:auto 1fr}
+  .memo-in.has-photo>.photo{grid-row:1/3}
+  .memo-in.has-photo>.rest{grid-column:2}
+  .memo-in.has-photo .do{margin-top:4px}
+  .help{grid-template-columns:1fr 1fr}
+}
 @media (prefers-reduced-motion:reduce){
-  .chips a,.btn,.checklist li label{transform:none!important}
-  .checklist .box>span,.checklist .box::after{transform:none!important}
-  .bar i{transition:none}
+  .press:active{transform:none}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="layout">
+  <div class="tool">
+  <header class="top">
+    <div class="face"><img src="images/face.jpg" alt="Bagel"></div>
+    <div><h1>Bagel Sitting</h1><p class="status" id="status" aria-live="polite">0 of 14 stickers</p></div>
+  </header>
+  <p class="hello" id="hello"><b>Hello, lovely cat sitter!</b> Thank you for looking after our girl. Do one step at a time and tap the pink button when it's done.</p>
 
- <header class="hero">
-  <div>
-    <h1>Bagel's Sitter Guide<span>everything you need for a happy visit</span></h1>
-    <p class="intro"><b>Hello, lovely cat sitter!</b> Thank you for looking after our girl. This page walks you through a visit from the moment you open the door to the moment you leave. Tick off the checklist as you go.</p>
-    <ul class="facts">
-      <li>Name: Bagel</li>
-      <li>Silver tabby</li>
-      <li>Girl</li>
-      <li>Shy with new people</li>
-      <li>Hides sometimes (normal!)</li>
-    </ul>
+  <div class="sheet-card">
+    <nav class="sheet" id="sheet" aria-label="Visit steps"></nav>
+    <p class="where" id="part"></p>
   </div>
-  <figure class="polaroid tilt-r">
-    <img src="images/face.jpg" alt="Close-up of Bagel, a silver tabby with big green eyes, looking up at the camera">
-    <figcaption>hi, I'm Bagel!</figcaption>
-  </figure>
-</header>
+  <div id="door"></div>
+  <main class="memo" id="memo" tabindex="-1"></main>
+  <p class="next" id="next"></p>
 
-<nav class="chips" aria-label="Sections">
-  <a href="#door">Door</a>
-  <a href="#visit">Visit checklist</a>
-  <a href="#meal">Meal prep</a>
-  <a href="#serve">Serving</a>
-  <a href="#litter">Litter</a>
-  <a href="#cleanup">Clean up</a>
-  <a href="#play">Playtime</a>
-  <a href="#help">If something's wrong</a>
-  <a href="#meet">Meet Bagel</a>
-</nav>
-
-<div class="alert" id="door" role="note">
-  <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M3.5 21h17"/><circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
-  <div>
-    <h2>Watch the front door</h2>
-    <p>Bagel likes to nap on the mat right inside the front door. She doesn't usually try to run out, but we don't know how she'll act with someone new.</p>
-    <ul>
-      <li><b>Coming in:</b> open the door slowly and block the gap with your legs.</li>
-      <li><b>Saying hello:</b> don't walk straight up to her. Come in low and sit down on the floor. She's much less scared of people at her level, so let her come to you.</li>
-      <li><b>Leaving:</b> check where she is before you open the door.</li>
-    </ul>
   </div>
+  <aside class="overview" aria-labelledby="overview-title">
+    <h2 id="overview-title">The whole visit</h2>
+    <ol class="list" id="list"></ol>
+  </aside>
+  </div>
+
+  <section id="help">
+    <h2>If something's wrong</h2>
+    <div class="help">
+      <div class="card urgent"><h3>Message us in the group chat right away</h3><ul><li>Vomiting</li><li>Diarrhoea</li><li>Anything that worries you</li></ul></div>
+      <div class="card calm"><h3>Totally normal</h3><ul><li>Hiding when you visit</li><li>Not eating her wet food straight away</li><li>Not wanting to play with you</li></ul></div>
+    </div>
+  </section>
+
+  <section id="meet">
+    <h2>Meet Bagel</h2>
+    <div class="gallery">
+      <figure><button class="photo press" data-zoom="images/sit.jpg" data-cap="silver tabby, white chest, green eyes" aria-label="Enlarge photo of Bagel sitting on the sofa"><img src="images/sit.jpg" alt="Bagel sitting upright on the sofa, looking at the camera" loading="lazy"></button><figcaption>silver tabby, white chest, green eyes</figcaption></figure>
+      <figure><button class="photo press" data-zoom="images/yawn.jpg" data-cap="big yawns, bigger opinions" aria-label="Enlarge photo of Bagel yawning"><img src="images/yawn.jpg" alt="Bagel sitting on a cardboard box mid-yawn" loading="lazy"></button><figcaption>big yawns, bigger opinions</figcaption></figure>
+      <figure><button class="photo press" data-zoom="images/cat.jpg" data-cap="her door mat nap spot" aria-label="Enlarge photo of Bagel asleep on the door mat"><img src="images/cat.jpg" alt="Bagel curled up asleep on a blue and white checked mat by the front door" loading="lazy"></button><figcaption>her door mat nap spot</figcaption></figure>
+    </div>
+    <ul class="facts"><li>Silver tabby</li><li>Girl</li><li>Shy with new people</li><li>Hides sometimes (normal!)</li></ul>
+  </section>
+
+  <div class="treat-note" id="thanks"><b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.</div>
+  <footer><p class="sig">Thank you!</p><p>Bagel says meow (probably).</p></footer>
 </div>
 
-<section id="visit">
-  <div class="sec-head"><h2>Visit checklist</h2><span class="note">tap each step when it's done</span></div>
-  <ol class="checklist" id="checklist">
-    <li><input type="checkbox" id="c1"><label for="c1"><span class="box"><span>1</span></span><span><b>Come in carefully</b><small>Block the door gap, Bagel may be on the mat. Then crouch low and sit on the floor; don't walk straight up to her.</small></span></label></li>
-    <li><input type="checkbox" id="c2"><label for="c2"><span class="box"><span>2</span></span><span><b>Wash yesterday's bowl if it's still out</b><small>Then return it to its spot by the sink.</small></span></label></li>
-    <li><input type="checkbox" id="c3"><label for="c3"><span class="box"><span>3</span></span><span><b>Check the fridge for an open can</b><small>Pink lid on top? Use that one. None there? Open a new can.</small></span></label></li>
-    <li><input type="checkbox" id="c4"><label for="c4"><span class="box"><span>4</span></span><span><b>Start heating the water</b><small>Glass kettle, press the lower right button twice.</small></span></label></li>
-    <li><input type="checkbox" id="c5"><label for="c5"><span class="box"><span>5</span></span><span><b>Scoop ⅓ can of wet food into her bowl</b><small>Use the white plastic spoon.</small></span></label></li>
-    <li><input type="checkbox" id="c6"><label for="c6"><span class="box"><span>6</span></span><span><b>Add ½ pump of krill oil</b><small>Silver bottle with the red "Hip &amp; Joint" label.</small></span></label></li>
-    <li><input type="checkbox" id="c7"><label for="c7"><span class="box"><span>7</span></span><span><b>Mix in the water</b><small>Fresh can: warm water (about 40°C). Can from the fridge: hot water. Stir until thick and soupy.</small></span></label></li>
-    <li><input type="checkbox" id="c8"><label for="c8"><span class="box"><span>8</span></span><span><b>Cover the can and put it in the fridge</b><small>Pink silicone lid on top.</small></span></label></li>
-    <li><input type="checkbox" id="c9"><label for="c9"><span class="box"><span>9</span></span><span><b>Serve to the left of the automatic feeder</b><small>If she doesn't eat right away, just leave it out.</small></span></label></li>
-    <li><input type="checkbox" id="c10"><label for="c10"><span class="box"><span>10</span></span><span><b>Check the water fountain</b><small>Make sure it has water and the battery isn't flat.</small></span></label></li>
-    <li><input type="checkbox" id="c11"><label for="c11"><span class="box"><span>11</span></span><span><b>Scoop the litter box and flush it</b><small>Toilet at the back. Close the toilet lid after.</small></span></label></li>
-    <li><input type="checkbox" id="c12"><label for="c12"><span class="box"><span>12</span></span><span><b>Playtime, 10 to 15 minutes (optional)</b><small>Wand toys are tucked in the sofa.</small></span></label></li>
-    <li><input type="checkbox" id="c13"><label for="c13"><span class="box"><span>13</span></span><span><b>Give her a treat</b><small>Treat box on the table by the 3D printer. Wet food not eaten yet? Put the treat in front of her bowl.</small></span></label></li>
-    <li><input type="checkbox" id="c14"><label for="c14"><span class="box"><span>14</span></span><span><b>Check where Bagel is, then leave</b><small>Close the door behind you carefully.</small></span></label></li>
-  </ol>
-  <div class="progress" id="progress">
-    <div class="bar" aria-hidden="true"><i id="bar"></i></div>
-    <span id="count" class="hand" aria-live="polite">0 of 14 done</span>
-    <button class="btn hold" id="reset" type="button"><span>Hold to start a new visit</span><span class="fill" aria-hidden="true">Hold to start a new visit</span></button>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="meal">
-  <div class="sec-head"><h2>Meal prep</h2><span class="note">wet food, krill oil and water</span></div>
-  <div class="split">
-    <div>
-      <ol class="steps">
-        <li><div><strong>Check the fridge first.</strong> Look for an opened can with the <b>pink silicone lid</b> on it. If there is one, use that. If not, open a new can: go for <b>Kit Cat Tuna &amp; Chicken Hearts</b>, it's her favourite.</div></li>
-        <li><div><strong>Heat the water.</strong> On the glass kettle, press the <kbd>lower right</kbd> button (labelled 功能 / 取消) <b>twice</b> to start heating.</div></li>
-        <li><div><strong>Scoop the food.</strong> Use the <b>white plastic spoon</b> (kept in her bowl by the sink) to scoop <b>⅓ of the can</b> into the bowl.</div></li>
-        <li><div><strong>Add krill oil.</strong> Press the pump bottle down <b>halfway</b> for ½ pump onto the food.</div></li>
-        <li><div><strong>Mix in the water.</strong> Pour some in and stir until the food is a <b>thick, liquidy</b> consistency, like a thick soup.
-          <dl class="kv">
-            <dt>Fresh can</dt><dd>Use <b>warm water</b>, about 40°C. It should feel warm, not hot.</dd>
-            <dt>Can from the fridge</dt><dd>Use <b>hot water</b> to take the chill off the food.</dd>
-          </dl></div></li>
-        <li><div><strong>Cover the can.</strong> Put the pink silicone lid over the opened can and <b>put it back in the fridge</b>.</div></li>
-      </ol>
-      <div class="callout">
-        <b>Grab the right bottle.</b> The krill oil sits on the counter next to some of our own supplements. Bagel's is the <b>silver bottle with the red "Hip &amp; Joint" label</b> and a pump top.
-      </div>
-    </div>
-    <div class="photos stack">
-      <figure class="polaroid wide tilt-l">
-        <img src="images/supplies.jpg" alt="Pink silicone can lid, a can of wet cat food and the krill oil pump bottle on the counter" loading="lazy">
-        <figcaption>pink lid, wet food can, krill oil</figcaption>
-      </figure>
-      <figure class="polaroid tilt-r">
-        <img src="images/kettle.jpg" alt="Glass kettle with a white heating base and a round button panel" loading="lazy">
-        <figcaption>the glass kettle: lower right button, twice</figcaption>
-      </figure>
-      <figure class="polaroid tilt-l">
-        <img src="images/krill.jpg" alt="Silver Absolute Holistic Arctic Krill Oil pump bottle with a red Hip and Joint label" loading="lazy">
-        <figcaption>krill oil: ½ pump per meal</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="serve">
-  <div class="sec-head"><h2>Serving</h2><span class="note">her dining corner</span></div>
-  <div class="split flip">
-    <div class="photos stack">
-      <figure class="polaroid tilt-r">
-        <img src="images/feeder.jpg" alt="White automatic feeder with kibble in its steel bowl, a water fountain to its right" loading="lazy">
-        <figcaption>wet food goes on the floor, left of the feeder</figcaption>
-      </figure>
-      <figure class="polaroid tilt-l">
-        <img src="images/churu.jpg" alt="Tub of Inaba Ciao Churu treat tubes with a pink lid" loading="lazy">
-        <figcaption>Churu, the secret weapon</figcaption>
-      </figure>
-    </div>
-    <div>
-      <p>Put the bowl on the floor <b>to the left of the white automatic feeder</b>. That's where Bagel expects her wet food.</p>
-      <p>She might not eat it straight away, and that's okay. <b>Leave the bowl out.</b> It gets washed at the next visit.</p>
-      <dl class="kv">
-        <dt>Automatic feeder</dt><dd>Petkit Fresh Element Solo. It gives her dry kibble by itself.</dd>
-        <dt>Water fountain</dt><dd>The white water bowl to the right of the feeder. Check every visit that it <b>has water</b> and <b>still has battery</b>. If the battery is low, let us know in the group chat.</dd>
-        <dt>Churu treats</dt><dd>Inaba Ciao Churu tubes, in the clear tub with the pink lid on the kitchen counter.</dd>
-      </dl>
-      <div class="callout">
-        <b>Not eating?</b> Squeeze a little Churu onto her wet food to tempt her. After playtime, you can also place a treat in front of her bowl.
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="litter">
-  <div class="sec-head"><h2>Litter box</h2><span class="note">every visit</span></div>
-  <ol class="steps">
-    <li><div><strong>Find it</strong> in the <b>toilet at the back</b> of the home.</div></li>
-    <li><div><strong>Scoop</strong> out any clumps and poop.</div></li>
-    <li><div><strong>Flush it</strong> down the toilet. We use flushable litter, so it's safe.</div></li>
-    <li><div><strong>Close the toilet lid</strong> afterwards.</div></li>
-  </ol>
-</section>
-
-<hr class="heart-rule">
-
-<section id="cleanup">
-  <div class="sec-head"><h2>Clean up</h2><span class="note">quick and easy</span></div>
-  <div class="split">
-    <div>
-      <p>Wash her bowl and put it back <b>on the counter next to the kitchen sink</b>, with the white spoon resting inside.</p>
-      <p>If she hasn't finished, leave the bowl out and wash it at the start of your next visit. On your last day, just leave it; we'll clean it when we're back.</p>
-      <div class="callout"><b>Her bowl:</b> the raised white ceramic one with a blue wave and fish pattern on the stand.</div>
-    </div>
-    <div class="photos">
-      <figure class="polaroid tilt-r">
-        <img src="images/bowl.jpg" alt="Raised white ceramic cat bowl with a blue wave pattern and a white plastic spoon inside, next to the sink" loading="lazy">
-        <figcaption>bowl and spoon live here, by the sink</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="play">
-  <div class="sec-head"><h2>Playtime</h2><span class="note">optional, 10 to 15 minutes</span></div>
-  <div class="split flip">
-    <div class="photos stack">
-      <figure class="polaroid tilt-l">
-        <img src="images/sofa.jpg" alt="Gap between the sofa armrest and seat cushion where the wand toys are tucked" loading="lazy">
-        <figcaption>wand toys hide in this sofa gap</figcaption>
-      </figure>
-      <figure class="polaroid tilt-r">
-        <img src="images/treat.jpg" alt="Clear plastic container of cat treats on the table next to the 3D printer (blurry photo)" loading="lazy">
-        <figcaption>treat box, on the table by the 3D printer (sorry it's blurry!)</figcaption>
-      </figure>
-    </div>
-    <div>
-      <p>We have <b>two wand toys</b>, tucked into the gap between the sofa cushion and the left armrest. Slide them back in when you're done.</p>
-      <p>Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!</p>
-      <div class="tips">
-        <div class="tip"><h3>Catch her eye</h3><p>Wiggle the wand quickly to get her attention.</p></div>
-        <div class="tip"><h3>Hide and seek</h3><p>Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears.</p></div>
-        <div class="tip"><h3>Tail tickle</h3><p>Lightly touch the toy to her lower back or tail. She'll chase it or flop down and bite it.</p></div>
-      </div>
-      <div class="callout">
-        <b>Treat time!</b> After playtime, give Bagel a treat. They're in the clear container on the <b>table next to the 3D printer</b>. If she hasn't eaten her wet food yet, place the treat <b>in front of her wet food bowl</b> to lead her to it.
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="help">
-  <div class="sec-head"><h2>If something's wrong</h2><span class="note">message us in the group chat</span></div>
-  <div class="help">
-    <div class="card urgent">
-      <h3>Message us right away</h3>
-      <ul>
-        <li>Vomiting</li>
-        <li>Diarrhoea</li>
-        <li>Anything that worries you</li>
-      </ul>
-    </div>
-    <div class="card calm">
-      <h3>Totally normal</h3>
-      <ul>
-        <li>Hiding when you visit</li>
-        <li>Not eating her wet food straight away</li>
-        <li>Not wanting to play with you</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<hr class="heart-rule">
-
-<section id="meet">
-  <div class="sec-head"><h2>Meet Bagel</h2><span class="note">so you know who you're looking for</span></div>
-  <div class="gallery">
-    <figure class="polaroid tilt-l">
-      <img src="images/sit.jpg" alt="Bagel sitting upright on the sofa, looking at the camera" loading="lazy">
-      <figcaption>silver tabby, white chest, green eyes</figcaption>
-    </figure>
-    <figure class="polaroid tilt-r">
-      <img src="images/yawn.jpg" alt="Bagel sitting on a cardboard box mid-yawn" loading="lazy">
-      <figcaption>big yawns, bigger opinions</figcaption>
-    </figure>
-    <figure class="polaroid tilt-l">
-      <img src="images/cat.jpg" alt="Bagel curled up asleep on a blue and white checked mat by the front door" loading="lazy">
-      <figcaption>her door mat nap spot</figcaption>
-    </figure>
-  </div>
-</section>
-
-<div class="callout thanks">
-  <b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.
-</div>
-
-<footer>
-  <p class="sig">Thank you!</p>
-  <p>Bagel says meow (probably).</p>
-</footer>
-
-</div>
+<dialog id="zoom"><figure><div id="zoom-pic"></div><figcaption><span id="zoom-cap"></span><button class="btn quiet press" id="zoom-close" type="button">Close</button></figcaption></figure></dialog>
 
 <script>
 (function(){
   var KEY='bagel-visit-v5';
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var boxes=[].slice.call(document.querySelectorAll('#checklist input'));
-  var bar=document.getElementById('bar'),count=document.getElementById('count'),progress=document.getElementById('progress'),reset=document.getElementById('reset');
-  var wasDone=false;
-  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(boxes.filter(function(b){return b.checked}).map(function(b){return b.id})))}catch(e){}}
-  function update(){
-    var n=boxes.filter(function(b){return b.checked}).length,done=n===boxes.length;
-    bar.style.transform='translateX('+(n/boxes.length*100-100)+'%)';
-    count.textContent=done?'All done, great job!':n+' of '+boxes.length+' done';
-    count.className=done?'hand done-msg':'hand';
-    progress.classList.toggle('done',done);
-    reset.disabled=n===0;
-    // the first unticked step gets a gentle highlight so the sitter knows where they are
-    var next=boxes.filter(function(b){return !b.checked})[0];
-    boxes.forEach(function(b){b.parentNode.classList.toggle('next',b===next)});
-    if(done&&!wasDone&&count.animate&&!reduce){
-      count.animate([{opacity:0,transform:'translateY(4px)',filter:'blur(2px)'},{opacity:1,transform:'none',filter:'none'}],{duration:320,easing:'cubic-bezier(.23,1,.32,1)'});
-    }
-    wasDone=done;
+  var PARTS={1:'Arrive and feed',2:'Tidy, play and leave'};
+  var DOOR_IN={title:'Watch the front door',text:"Bagel likes to nap on the mat right inside the front door. She doesn't usually try to run out, but we don't know how she'll act with someone new."};
+  var DOOR_OUT={title:'Before you open the door',text:'Check where Bagel is first, then close the door behind you carefully.'};
+  var STEPS=[
+    {id:'c1',part:1,title:'Come in carefully',door:DOOR_IN,photo:'cat.jpg',alt:'Bagel curled up asleep on the blue and white checked mat by the front door',cap:'her door mat nap spot',
+      text:'Open the door <b>slowly</b> and block the gap with your legs. She may be on the mat.',
+      more:["Don't walk straight up to her. Come in low and <b>sit down on the floor</b>.","She's much less scared of people at her level, so let her come to you."]},
+    {id:'c2',part:1,title:"Wash yesterday's bowl if it's still out",photo:'bowl.jpg',alt:'Raised white ceramic cat bowl with a blue wave pattern and a white plastic spoon inside, next to the sink',cap:'bowl and spoon live here, by the sink',
+      text:'Wash it and put it back <b>on the counter next to the kitchen sink</b>, with the white spoon resting inside.',
+      more:['Her bowl is the raised white ceramic one with a blue wave and fish pattern on the stand.',"On your last day, just leave it; we'll clean it when we're back."]},
+    {id:'c3',part:1,title:'Check the fridge for an open can',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid, a can of wet cat food and the krill oil pump bottle on the counter',cap:'pink lid, wet food can, krill oil',
+      text:'Look for an opened can with the <b>pink silicone lid</b> on it. If there is one, use that.',
+      more:["None there? Open a new can: <b>Kit Cat Tuna &amp; Chicken Hearts</b>, it's her favourite."]},
+    {id:'c4',part:1,title:'Start heating the water',qty:['×2','presses'],photo:'kettle.jpg',alt:'Glass kettle with a white heating base and a round button panel',cap:'the glass kettle: lower right button, twice',
+      text:'On the glass kettle, press the <b>lower right</b> button (labelled <span class="nb">功能 / 取消</span>) <b>twice</b> to start heating.'},
+    {id:'c5',part:1,title:'Scoop wet food into her bowl',qty:['⅓','can'],photo:'bowl.jpg',alt:'Raised white ceramic cat bowl with a white plastic spoon inside',cap:'use the white plastic spoon',
+      text:'Use the <b>white plastic spoon</b> (kept in her bowl by the sink) to scoop a third of the can into the bowl.'},
+    {id:'c6',part:1,title:'Add krill oil',qty:['½','pump'],photo:'krill.jpg',alt:'Silver Absolute Holistic Arctic Krill Oil pump bottle with a red Hip and Joint label',cap:'krill oil: ½ pump per meal',
+      text:'Press the pump bottle down <b>halfway</b> onto the food.',
+      more:['Grab the right bottle: it sits next to some of our own supplements. Bagel\'s is the <b>silver bottle with the red "Hip &amp; Joint" label</b> and a pump top.']},
+    {id:'c7',part:1,title:'Mix in the water',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid, a can of wet cat food and the krill oil pump bottle on the counter',cap:'fresh can or fridge can?',
+      pair:[['Fresh can','40°C','warm, not hot'],['Can from the fridge','Hot','takes the chill off']],
+      text:'Pour some in and stir until it is <b>thick and liquidy</b>, like a thick soup.'},
+    {id:'c8',part:1,title:'Cover the can and put it in the fridge',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid on the counter',cap:'the pink silicone lid',
+      text:'Put the <b>pink silicone lid</b> over the opened can and put it back in the fridge.'},
+    {id:'c9',part:1,title:'Serve to the left of the automatic feeder',photo:'feeder.jpg',alt:'White automatic feeder with kibble in its steel bowl, a water fountain to its right',cap:'wet food goes on the floor, left of the feeder',
+      text:'Put the bowl on the floor <b>to the left of the white automatic feeder</b>. That\'s where Bagel expects her wet food.',
+      more:["She might not eat straight away, and that's okay. <b>Leave the bowl out</b>; it gets washed at the next visit.",'Not eating? Squeeze a little <b>Churu</b> onto her wet food to tempt her. The tubes are in the clear tub with the pink lid on the kitchen counter.','The feeder (Petkit Fresh Element Solo) gives her dry kibble by itself.'],
+      thumbs:[['churu.jpg','Tub of Inaba Ciao Churu treat tubes with a pink lid','Churu, the secret weapon']]},
+    {id:'c10',part:2,title:'Check the water fountain',photo:'feeder.jpg',alt:'White automatic feeder with a white water fountain to its right',cap:'the fountain is right of the feeder',
+      text:'The white water bowl to the right of the feeder. Make sure it <b>has water</b> and <b>still has battery</b>.',
+      more:['Battery low? Let us know in the group chat.']},
+    {id:'c11',part:2,title:'Scoop the litter box and flush it',
+      text:'The litter box is in the <b>toilet at the back</b> of the home.',
+      more:['Scoop out any clumps and poop.',"Flush it down the toilet. We use flushable litter, so it's safe.",'<b>Close the toilet lid</b> afterwards.']},
+    {id:'c12',part:2,title:'Playtime',opt:true,qty:['10–15','min'],photo:'sofa.jpg',alt:'Gap between the sofa armrest and seat cushion where the wand toys are tucked',cap:'wand toys hide in this sofa gap',
+      text:'Two <b>wand toys</b> are tucked between the sofa cushion and the left armrest. Slide them back in when you\'re done.',
+      more:["Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!"],
+      tips:[['Catch her eye','Wiggle the wand quickly to get her attention.'],['Hide and seek',"Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears."],['Tail tickle',"Lightly touch the toy to her lower back or tail. She'll chase it or flop down and bite it."]]},
+    {id:'c13',part:2,title:'Give her a treat',photo:'treat.jpg',alt:'Clear plastic container of cat treats on the table next to the 3D printer (blurry photo)',cap:"treat box by the 3D printer (sorry it's blurry!)",
+      text:'The treats are in the clear container on the <b>table next to the 3D printer</b>.',
+      more:["Wet food not eaten yet? Put the treat <b>in front of her wet food bowl</b> to lead her to it."]},
+    {id:'c14',part:2,title:'Check where Bagel is, then leave',door:DOOR_OUT,photo:'cat.jpg',alt:'Bagel curled up asleep on the mat by the front door',cap:'she might be back on the mat',
+      text:'Find Bagel before you open the door, then close it behind you carefully.'}
+  ];
+  var N=STEPS.length;
+
+  // die-cut sticker shapes, cycled so the sheet reads as a set
+  var SHAPES=[
+    '<circle cx="24" cy="24" r="19"/>',
+    '<path d="M24 41s-16-9.3-16-21C8 14 12.4 9 18 9c2.8 0 4.8 1.4 6 3.3C25.2 10.4 27.2 9 30 9c5.6 0 10 5 10 11 0 11.7-16 21-16 21z"/>',
+    '<path d="M24 5.5l5.6 11.4 12.6 1.8-9.1 8.9 2.1 12.5L24 34.2l-11.2 5.9 2.1-12.5-9.1-8.9 12.6-1.8z" stroke-linejoin="round"/>',
+    '<path d="M24 6a7 7 0 0 1 6.6 9.3A7 7 0 0 1 36.8 27a7 7 0 0 1-8.6 9.6 7 7 0 0 1-8.4 0A7 7 0 0 1 11.2 27a7 7 0 0 1 6.2-11.7A7 7 0 0 1 24 6z"/>'
+  ];
+  var COLORS=['var(--pink)','var(--butter)','var(--mint)','var(--pink)','var(--sky)','var(--lilac)'];
+  function sticker(i){
+    var fill=COLORS[i%COLORS.length],txt=fill==='var(--pink)'?'var(--on-pink)':'var(--sticker-ink)',rot=[-8,6,-4,9,-10,4][i%6];
+    return '<svg viewBox="0 0 48 48" aria-hidden="true" style="transform:rotate('+rot+'deg)"><g fill="'+fill+'" stroke="#fff" stroke-width="3.5" paint-order="stroke">'+SHAPES[i%SHAPES.length]+'</g><text x="24" y="25" text-anchor="middle" dominant-baseline="central" font-family="M PLUS Rounded 1c, system-ui, sans-serif" font-weight="900" font-size="15" fill="'+txt+'">'+(i+1)+'</text></svg>';
   }
-  var saved=load();boxes.forEach(function(b){b.checked=saved.indexOf(b.id)>-1;b.addEventListener('change',function(){save();update()})});
+  var ZOOM_ICON='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>';
+  var DOOR_ICON='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M3.5 21h17"/><circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"/></svg>';
+
+  var done={},view=0;
+  function load(){try{var a=JSON.parse(localStorage.getItem(KEY)||'[]');a.forEach(function(id){done[id]=true})}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(STEPS.filter(function(s){return done[s.id]}).map(function(s){return s.id})))}catch(e){}}
+  function count(){return STEPS.filter(function(s){return done[s.id]}).length}
+  function firstOpen(){for(var i=0;i<N;i++)if(!done[STEPS[i].id])return i;return -1}
+
+  var $=function(id){return document.getElementById(id)};
+  var sheet=$('sheet'),memo=$('memo'),list=$('list');
+
+  function photoBtn(src,alt,cap,land){
+    return '<button class="photo press'+(land?' landscape':'')+'" type="button" data-zoom="images/'+src+'" data-cap="'+cap.replace(/"/g,'&quot;')+'" aria-label="Enlarge photo: '+cap.replace(/"/g,'&quot;')+'"><img src="images/'+src+'" alt="'+alt.replace(/"/g,'&quot;')+'"><span class="zoom">'+ZOOM_ICON+'</span></button>';
+  }
+
+  function renderSheet(){
+    var now=firstOpen();
+    sheet.innerHTML=STEPS.map(function(s,i){
+      var d=done[s.id];
+      return '<button class="slot press'+(d?' is-done':'')+(i===now?' now':'')+(i===view?' viewing':'')+'" type="button" data-go="'+i+'" aria-label="Step '+(i+1)+': '+s.title.replace(/"/g,'&quot;')+(d?', done':'')+'"'+(i===view?' aria-current="step"':'')+'><span class="ring"></span><span class="n">'+(i+1)+'</span>'+(d?sticker(i):'')+'</button>';
+    }).join('');
+  }
+
+  function renderList(){
+    var html='';
+    STEPS.forEach(function(s,i){
+      if(i===0||STEPS[i-1].part!==s.part)html+='<li class="half">Part '+s.part+' · '+PARTS[s.part]+'</li>';
+      var d=done[s.id];
+      html+='<li><button type="button" class="press'+(d?' is-done':'')+(i===view?' viewing':'')+'" data-go="'+i+'"'+(i===view?' aria-current="step"':'')+'><span class="slot'+(d?' is-done':'')+'"><span class="ring"></span><span class="n">'+(i+1)+'</span>'+(d?sticker(i):'')+'</span><span class="t">'+s.title+'</span><span class="q">'+(s.qty?s.qty.join(' '):'')+'</span></button></li>';
+    });
+    html+='<li class="reset-wrap">'+holdBtn()+'</li>';
+    list.innerHTML=html;
+  }
+
+  function holdBtn(){return '<button class="btn hold" type="button"'+(count()?'':' disabled')+'><span>Hold to start a new visit</span><span class="fill" aria-hidden="true">Hold to start a new visit</span></button>'}
+
+  function renderMemo(){
+    var n=count();
+    $('status').textContent=n===N?'All 14 stickers!':n+' of '+N+' stickers';
+    $('hello').hidden=n>0;
+    $('thanks').hidden=view<0;
+    if(view<0){ // all done
+      $('door').innerHTML='';$('part').innerHTML='<span>Visit complete</span><span>14 of 14</span>';$('next').innerHTML='';
+      memo.innerHTML='<div class="finish"><div class="big">'+sticker(13)+'</div><h2>All done, great job!</h2><p>Every sticker is on the sheet. Bagel says thank you (probably meow).</p><div class="treat-note"><b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.</div>'+holdBtn()+'</div>';
+      return;
+    }
+    var s=STEPS[view],d=done[s.id];
+    $('door').innerHTML=s.door?'<div class="door" role="note"><span class="ic">'+DOOR_ICON+'</span><div><h2>'+s.door.title+'</h2><p>'+s.door.text+'</p></div></div>':'';
+    var inPart=STEPS.filter(function(x){return x.part===s.part}),pos=inPart.indexOf(s)+1;
+    $('part').innerHTML='<span>Part '+s.part+': '+PARTS[s.part]+'</span><span>'+pos+' of '+inPart.length+'</span>';
+    var what='<div class="what"><h2 id="memo-title" tabindex="-1"><span class="sr">Step '+(view+1)+' of '+N+': </span>'+s.title+'</h2><span class="mark" id="mark" aria-hidden="true">'+(d?sticker(view):'<span class="ring"></span><span class="n">'+(view+1)+'</span>')+'</span>'+(s.opt?'<span class="tag">Optional</span>':'')+(s.qty?'<div class="qty'+(s.qty[0].length>3?' long':'')+'"><b>'+s.qty[0]+'</b><span>'+s.qty[1]+'</span></div>':'')+'</div>';
+    var html='<div class="memo-in'+(s.photo?' has-photo':'')+'">'+(s.photo?photoBtn(s.photo,s.alt,s.cap,s.land):'')+what+'<div class="rest">';
+    if(s.pair)html+='<div class="pair">'+s.pair.map(function(p){return '<div><small>'+p[0]+'</small><b>'+p[1]+'</b><span>'+p[2]+'</span></div>'}).join('')+'</div>';
+    html+='<p class="do">'+s.text+'</p>';
+    if(s.more)html+='<ul class="more">'+s.more.map(function(m){return '<li>'+m+'</li>'}).join('')+'</ul>';
+    if(s.tips)html+='<div class="tips">'+s.tips.map(function(t){return '<div><b>'+t[0]+'</b>'+t[1]+'</div>'}).join('')+'</div>';
+    if(s.thumbs)html+='<div class="thumbs">'+s.thumbs.map(function(t){return '<figure>'+photoBtn(t[0],t[1],t[2])+'<figcaption>'+t[2]+'</figcaption></figure>'}).join('')+'</div>';
+    var primary=d?'<button class="btn primary press" type="button" data-act="next">'+(firstOpen()<0?'Finish':'Next step')+'</button>'
+      :'<button class="btn primary press" type="button" data-act="done">'+(s.opt?'Played! Done':'Stick it! Done')+'</button>';
+    var secondary=d?'<button class="btn quiet press" type="button" data-act="undo">Undo</button>'
+      :(s.opt?'<button class="btn quiet press" type="button" data-act="skip">Skip</button>':'<button class="btn quiet press" type="button" data-act="back"'+(view===0?' disabled':'')+'>Back</button>');
+    html+='</div><div class="actions">'+secondary+primary+'</div></div>';
+    memo.innerHTML=html;
+    var nx=nextFrom(view);
+    $('next').innerHTML=nx>=0?'Up next: <b>'+(nx+1)+'</b> '+STEPS[nx].title:'Up next: <b>you\'re finished</b>';
+  }
+
+  function nextFrom(i){for(var j=i+1;j<N;j++)if(!done[STEPS[j].id])return j;return firstOpen()===i?-1:firstOpen()}
+  function render(){renderSheet();renderMemo();renderList()}
+
+  function handOver(to,focus){
+    view=to;render();
+    if(!reduce&&memo.animate)memo.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:220,easing:'cubic-bezier(.23,1,.32,1)'});
+    var anchor=$('door').firstChild||memo,top=anchor.getBoundingClientRect().top;
+    if(top<0||top>innerHeight*.5)anchor.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    if(focus){var t=$('memo-title')||memo;t.focus({preventScroll:true})}
+  }
+
+  var busy=false;
+  function complete(skip){
+    if(busy)return;var s=STEPS[view];
+    done[s.id]=true;save();
+    var i=view,nx=nextFrom(i);
+    if(skip){handOver(nx,true);return}
+    busy=true;
+    renderSheet();
+    $('mark').innerHTML=sticker(i);
+    var mk=$('mark').querySelector('svg'),sl=sheet.querySelector('[data-go="'+i+'"] svg');
+    if(!reduce&&mk&&mk.animate){
+      var pop=[{transform:'scale(1.35) rotate(-18deg)',opacity:0},{transform:'scale(1) rotate(0deg)',opacity:1}];
+      mk.animate(pop,{duration:300,easing:'cubic-bezier(.34,1.45,.64,1)'});
+      if(sl)sl.animate(pop,{duration:300,delay:60,easing:'cubic-bezier(.34,1.45,.64,1)'});
+    }
+    setTimeout(function(){busy=false;handOver(nx,true)},reduce?0:460);
+  }
+
+  document.addEventListener('click',function(e){
+    var z=e.target.closest('[data-zoom]');
+    if(z){openZoom(z.getAttribute('data-zoom'),z.getAttribute('data-cap'));return}
+    var g=e.target.closest('[data-go]');
+    if(g){handOver(+g.getAttribute('data-go'),true);return}
+    var a=e.target.closest('[data-act]');if(!a)return;
+    var act=a.getAttribute('data-act');
+    if(act==='done')complete(false);
+    else if(act==='skip')complete(true);
+    else if(act==='next')handOver(nextFrom(view),true);
+    else if(act==='back')handOver(Math.max(0,view-1),true);
+    else if(act==='undo'){delete done[STEPS[view].id];save();render()}
+  });
 
   // hold for a second to clear, so a stray tap can't wipe a visit in progress
-  var timer=null;
-  function startHold(){if(reset.disabled||timer)return;reset.classList.add('holding');timer=setTimeout(function(){boxes.forEach(function(b){b.checked=false});save();update();endHold()},1000)}
-  function endHold(){clearTimeout(timer);timer=null;reset.classList.remove('holding')}
-  reset.addEventListener('pointerdown',function(e){if(e.button===0)startHold()});
-  ['pointerup','pointerleave','pointercancel'].forEach(function(t){reset.addEventListener(t,endHold)});
-  reset.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();startHold()}});
-  reset.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')endHold()});
-  reset.addEventListener('blur',endHold);
-  reset.addEventListener('contextmenu',function(e){e.preventDefault()});
-  update();
+  var timer=null,held=null;
+  function startHold(b){if(b.disabled||timer)return;held=b;b.classList.add('holding');timer=setTimeout(function(){done={};save();endHold();view=0;render();window.scrollTo({top:0,behavior:reduce?'auto':'smooth'})},1000)}
+  function endHold(){clearTimeout(timer);timer=null;if(held)held.classList.remove('holding');held=null}
+  document.addEventListener('pointerdown',function(e){var b=e.target.closest('.hold');if(b&&e.button===0)startHold(b)});
+  ['pointerup','pointercancel'].forEach(function(t){document.addEventListener(t,endHold)});
+  document.addEventListener('pointerout',function(e){if(held&&e.target.closest('.hold')===held&&!held.contains(e.relatedTarget))endHold()});
+  document.addEventListener('keydown',function(e){var b=e.target.closest&&e.target.closest('.hold');if(b&&(e.key===' '||e.key==='Enter')){e.preventDefault();if(!e.repeat)startHold(b)}});
+  document.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')endHold()});
+  document.addEventListener('contextmenu',function(e){if(e.target.closest('.hold'))e.preventDefault()});
 
-  // highlight the chip for the section on screen
-  var nav=document.querySelector('.chips'),chips={};
-  [].forEach.call(nav.querySelectorAll('a'),function(a){chips[a.getAttribute('href').slice(1)]=a});
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting)return;
-        var a=chips[en.target.id];if(!a)return;
-        for(var k in chips)chips[k].removeAttribute('aria-current');
-        a.setAttribute('aria-current','true');
-        nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2,behavior:reduce?'auto':'smooth'});
-      });
-    },{rootMargin:'-30% 0px -60% 0px'});
-    Object.keys(chips).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  var dlg=$('zoom');
+  function openZoom(src,cap){
+    var img=new Image();img.src=src;img.alt=cap;$('zoom-pic').replaceChildren(img);$('zoom-cap').textContent=cap;
+    if(dlg.showModal)dlg.showModal();else window.open(src);
   }
+  $('zoom-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+
+  load();view=firstOpen();render();
 })();
 </script>
-
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap">
+<style>
+:root{--ground:#3b0f24;--candy:#ff5c9a;--petal:#ffd1e3;--white:#fff}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--ground);color:var(--white);font-family:"M PLUS Rounded 1c",system-ui,sans-serif;line-height:1.5}
+header{padding:16px}
+header h1{font-weight:900;font-size:26px}
+header p{color:var(--petal);font-size:14px;font-weight:700}
+.door{margin:0 16px;background:var(--candy);border-radius:14px;padding:9px 12px;font-size:14px;font-weight:700}
+h3{margin:18px 16px 8px;font-size:15px;font-weight:900;color:var(--petal)}
+.row{display:flex;gap:10px;padding:0 16px;overflow:hidden}
+.t{flex:none;width:92px;height:124px;border-radius:12px;background:#6b3a50;opacity:.45}
+.t.done{opacity:.25}
+.focus{flex:none;width:250px;border-radius:16px;background:#fff;color:var(--ground);overflow:hidden;box-shadow:0 0 0 3px var(--candy)}
+.focus .ph{height:140px;background:#d8cbc2}
+.focus .in{padding:10px 12px 12px}
+.focus small{font-weight:800;color:#c2185b;font-size:12px}
+.focus h2{font-size:21px;font-weight:900;line-height:1.15}
+.focus .q{font-size:40px;font-weight:900;color:#c2185b;line-height:1}
+.focus p{font-size:14px}
+.focus .btn{margin-top:10px;height:50px;border-radius:999px;background:var(--ground);color:#fff;display:grid;place-items:center;font-weight:900}
+</style></head><body>
+<header><h1>Bagel's visit</h1><p>Now: step 4 of 14</p></header>
+<div class="door">Door: she naps on the mat inside. Open slowly.</div>
+<h3>Arrive and feed</h3>
+<div class="row">
+  <div class="t done"></div>
+  <div class="focus"><div class="ph"></div><div class="in"><small>Step 4</small><h2>Heat the water</h2><span class="q">×2</span><p>Lower right button (功能 / 取消).</p><div class="btn">Done</div></div></div>
+  <div class="t"></div>
+</div>
+<h3>Tidy, play and leave</h3>
+<div class="row"><div class="t"></div><div class="t"></div><div class="t"></div><div class="t"></div></div>
+</body></html>

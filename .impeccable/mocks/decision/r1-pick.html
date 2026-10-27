@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&family=DotGothic16&display=swap">
+<style>
+:root{--shell:#ff8fb8;--blush:#fff0f5;--lcd:#e7f2d8;--ink:#2b1b24;--butter:#ffd66b}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--blush);color:var(--ink);font-family:"M PLUS Rounded 1c",system-ui,sans-serif;line-height:1.5}
+.egg{background:var(--shell);padding:16px 16px 18px;border-radius:0 0 40px 40px}
+.egg h1{font-weight:900;font-size:22px;color:#fff;text-align:center}
+.lcd{margin-top:10px;background:var(--lcd);border-radius:18px;padding:12px 14px;border:4px solid #fff;display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center}
+.pet{width:64px;height:64px;border-radius:14px;background:#cbbfb6}
+.meters{display:grid;gap:6px}
+.m{display:grid;grid-template-columns:52px 1fr;gap:8px;align-items:center;font-family:DotGothic16,monospace;font-size:13px}
+.m i{height:12px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 13px);opacity:.9}
+.m i.lo{background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 13px) 0 0/40% 100% no-repeat}
+.m i.mid{background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 13px) 0 0/65% 100% no-repeat}
+.m i.zero{background:repeating-linear-gradient(90deg,rgba(43,27,36,.18) 0 10px,transparent 10px 13px)}
+.door{margin:14px 16px 0;background:#fff;border:2px solid var(--shell);border-radius:16px;padding:9px 12px;font-size:14px;font-weight:700}
+.door b{color:#d6336c}
+.card{margin:14px 16px 0;background:#fff;border-radius:22px;padding:12px;box-shadow:0 8px 20px -12px rgba(43,27,36,.4)}
+.card .photo{height:180px;border-radius:14px;background:#ddd1c8}
+.card .row{display:flex;justify-content:space-between;align-items:end;margin-top:10px}
+.card small{font-weight:700;color:#d6336c;font-size:13px}
+.card h2{font-size:23px;font-weight:900;line-height:1.15}
+.card .q{font-size:46px;font-weight:900;color:#d6336c;line-height:1}
+.card p{font-size:15px;margin-top:4px}
+.btn{margin:14px 16px 0;height:58px;border-radius:999px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}
+.btn span{color:var(--butter)}
+</style></head><body>
+<header class="egg">
+  <h1>Bagel's care routine</h1>
+  <div class="lcd">
+    <div class="pet"></div>
+    <div class="meters">
+      <div class="m">FOOD<i class="lo"></i></div>
+      <div class="m">WATER<i class="zero"></i></div>
+      <div class="m">LITTER<i class="zero"></i></div>
+      <div class="m">PLAY<i class="zero"></i></div>
+    </div>
+  </div>
+</header>
+<div class="door"><b>Door first:</b> she naps on the mat inside. Open slowly.</div>
+<article class="card">
+  <div class="photo"></div>
+  <div class="row"><div><small>Food · step 4 of 14</small><h2>Heat the water</h2></div><span class="q">×2</span></div>
+  <p>Glass kettle: lower right button (功能 / 取消), twice.</p>
+</article>
+<div class="btn">Done · <span>+ food</span></div>
+</body></html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<style>
+:root{--bg:#fff5f8;--card:#fff;--ink:#3a1830;--sub:#6b4a5a;--pink:#e8467c;--line:#f6dbe5}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;line-height:1.4}
+header{padding:18px 18px 12px}
+header h1{font-size:30px;font-weight:800}
+header p{color:var(--sub);font-size:15px;margin-top:2px}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:12px}.bar i{display:block;width:21%;height:100%;background:var(--pink);border-radius:3px}
+.banner{margin:6px 16px 14px;background:#ffe0ea;border-radius:12px;padding:12px 14px;font-size:14.5px}
+.banner b{display:block}
+.label{margin:14px 32px 6px;font-size:12px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.04em}
+.group{margin:0 16px;background:var(--card);border-radius:12px;overflow:hidden}
+.item{display:grid;grid-template-columns:26px 1fr 44px;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.c{width:24px;height:24px;border-radius:50%;border:2px solid #d9a3b6}
+.item.done .c{background:var(--pink);border-color:var(--pink)}
+.item.done b{color:var(--sub);text-decoration:line-through}
+.item b{font-weight:600;font-size:16px;display:block}
+.item span{font-size:13.5px;color:var(--sub)}
+.item i{width:44px;height:44px;border-radius:8px;background:#e8d7dd}
+</style></head><body>
+<header><h1>Bagel's visit</h1><p>3 of 14 steps done</p><div class="bar"><i></i></div></header>
+<div class="banner"><b>Watch the front door</b>Bagel naps on the mat inside. Open slowly and block the gap.</div>
+<div class="label">Arrive</div>
+<div class="group">
+  <div class="item done"><span class="c"></span><div><b>Come in carefully</b><span>Crouch low, let her come to you</span></div><i></i></div>
+  <div class="item done"><span class="c"></span><div><b>Wash yesterday's bowl</b><span>Return it by the sink</span></div><i></i></div>
+</div>
+<div class="label">Meal</div>
+<div class="group">
+  <div class="item done"><span class="c"></span><div><b>Check the fridge for an open can</b><span>Pink lid on top? Use that one</span></div><i></i></div>
+  <div class="item"><span class="c"></span><div><b>Heat the water</b><span>Lower right button, twice</span></div><i></i></div>
+  <div class="item"><span class="c"></span><div><b>Scoop ⅓ can into her bowl</b><span>White plastic spoon</span></div><i></i></div>
+  <div class="item"><span class="c"></span><div><b>Add ½ pump of krill oil</b><span>Silver bottle, red label</span></div><i></i></div>
+</div>
+</body></html>

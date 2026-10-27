@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap">
+<style>
+:root{--milk:#ffe3ec;--sheet:#fff;--pop:#ff4f8b;--plum:#3a1830;--butter:#ffd66b;--mint:#7fd8b4;--line:#ffc2d6}
+*{box-sizing:border-box;margin:0}
+html,body{width:390px;height:844px;overflow:hidden}
+body{background:var(--milk);color:var(--plum);font-family:"M PLUS Rounded 1c",system-ui,sans-serif;line-height:1.5}
+header{padding:14px 16px 0;display:flex;gap:12px;align-items:center}
+.face{width:52px;height:52px;border-radius:50%;background:#c9b8b0;border:4px solid #fff;box-shadow:0 2px 6px rgba(58,24,48,.18)}
+header h1{font-weight:900;font-size:24px;line-height:1.1}
+header p{font-size:13px;font-weight:700}
+.sheet{margin:12px 16px 0;background:var(--sheet);border-radius:18px;padding:10px 12px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.st{aspect-ratio:1;border-radius:50%;border:2px dashed var(--line)}
+.st.used{border:3px solid #fff;box-shadow:0 0 0 2px var(--pop);background:var(--pop)}
+.st.used:nth-child(2){background:var(--butter);box-shadow:0 0 0 2px #e6b43a}
+.st.used:nth-child(3){background:var(--mint);box-shadow:0 0 0 2px #4fb88f}
+.st.now{border:2px solid var(--pop)}
+.door{margin:12px 16px 0;background:var(--pop);color:#fff;border-radius:14px;padding:9px 12px;font-size:14px;font-weight:700;display:flex;gap:8px;align-items:center}
+.door b{font-weight:900}
+.half{margin:16px 16px 6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+.memo{margin:0 16px;background:var(--sheet);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px -10px rgba(58,24,48,.4)}
+.memo .top{height:12px;background:repeating-linear-gradient(90deg,var(--pop) 0 10px,transparent 10px 20px);opacity:.35}
+.memo .photo{height:170px;margin:12px 12px 0;border-radius:12px;background:#d9cfc6}
+.memo .in{padding:12px 14px 14px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.memo .no{font-size:13px;font-weight:800;color:var(--pop)}
+.memo h2{font-size:23px;font-weight:900;line-height:1.15}
+.memo .q{grid-row:1/3;grid-column:2;font-size:52px;font-weight:900;color:var(--pop);line-height:1}
+.memo p{grid-column:1/-1;font-size:15px;font-weight:500;margin-top:4px}
+.slot{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin-top:12px}
+.slot i{flex:none;width:40px;height:40px;border-radius:50%;border:2px dashed var(--pop)}
+.btn{flex:1;height:56px;border-radius:999px;background:var(--plum);color:#fff;font-weight:900;font-size:18px;display:grid;place-items:center}
+.peek{margin:10px 24px 0;height:40px;background:#fff;border-radius:0 0 16px 16px;opacity:.7;display:flex;align-items:center;padding:0 14px;font-weight:800;font-size:14px;gap:8px}
+.peek span{color:var(--pop)}
+</style></head><body>
+<header><div class="face"></div><div><h1>Bagel's visit</h1><p>3 stickers used · 11 to go</p></div></header>
+<div class="sheet">
+  <i class="st used"></i><i class="st used"></i><i class="st used"></i><i class="st now"></i><i class="st"></i><i class="st"></i><i class="st"></i>
+  <i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i>
+</div>
+<div class="door"><b>Door!</b> She naps on the mat. Open slowly, block the gap.</div>
+<div class="half"><span>Part 1 · Arrive and feed</span><span>4 / 9</span></div>
+<article class="memo">
+  <div class="top"></div>
+  <div class="photo"></div>
+  <div class="in">
+    <span class="no">Step 4</span>
+    <h2>Heat the water</h2>
+    <span class="q">×2</span>
+    <p>Glass kettle: press the lower right button (功能 / 取消) twice.</p>
+    <div class="slot"><i></i><span class="btn">Stick it! Done</span></div>
+  </div>
+</article>
+<div class="peek"><span>5</span> Scoop ⅓ can into her bowl</div>
+</body></html>
