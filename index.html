@@ -219,6 +219,12 @@ dialog figure{margin:0;background:var(--sheet);border-radius:20px;padding:10px;c
 dialog img{max-height:76vh;width:auto;margin:0 auto;border-radius:12px}
 dialog figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 4px 2px;font-weight:700}
 dialog .btn{height:44px;font-size:1rem}
+.wifi-info{margin:10px 0 0;padding:10px 14px;border-radius:14px;background:var(--mat);display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center}
+.wifi-info[hidden]{display:none}
+.wifi-info dt{font-weight:700;font-size:.9rem}
+.wifi-info dd{margin:0;font-weight:900;font-size:1.1rem;color:var(--pink-ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.wifi-info .wide{grid-column:2/4;white-space:nowrap}
+.wifi-info .btn{height:36px;padding:0 14px;font-size:.9rem;background:var(--sheet)}
 
 /* wide screens: the whole visit sits beside the current step */
 @media (min-width:980px){
@@ -243,7 +249,7 @@ dialog .btn{height:44px;font-size:1rem}
 <div class="wrap">
   <div class="layout">
   <div class="tool">
-  <button class="wifi press" type="button" data-zoom="images/wifi.jpg" data-cap="Scan with your phone camera to join the WiFi" aria-label="Show the WiFi QR code"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M6 12.6a9 9 0 0 1 12 0M9.4 16.2a4 4 0 0 1 5.2 0"/><circle cx="12" cy="19.6" r="1.2" fill="currentColor" stroke="none"/></svg>WiFi</button>
+  <button class="wifi press" type="button" data-zoom="images/wifi.jpg" data-cap="Scan with your phone camera to join the WiFi" data-wifi aria-label="Show the WiFi QR code"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M6 12.6a9 9 0 0 1 12 0M9.4 16.2a4 4 0 0 1 5.2 0"/><circle cx="12" cy="19.6" r="1.2" fill="currentColor" stroke="none"/></svg>WiFi</button>
   <header class="top">
     <div class="face"><img src="images/face.jpg" alt="Bagel"></div>
     <div><h1>Bagel Sitting</h1><p class="status" id="status" aria-live="polite">0 of 14 stickers</p></div>
@@ -287,7 +293,7 @@ dialog .btn{height:44px;font-size:1rem}
   <footer><p class="sig">Thank you!</p><p>Bagel says meow (probably).</p></footer>
 </div>
 
-<dialog id="zoom"><figure><div id="zoom-pic"></div><figcaption><span id="zoom-cap"></span><button class="btn quiet press" id="zoom-close" type="button">Close</button></figcaption></figure></dialog>
+<dialog id="zoom"><figure><div id="zoom-pic"></div><dl class="wifi-info" id="wifi-info" hidden><dt>Network</dt><dd class="wide">TP-Link_5228_5G</dd><dt>Password</dt><dd id="wifi-pass">39770196A</dd><button class="btn quiet press" id="wifi-copy" type="button">Copy</button></dl><figcaption><span id="zoom-cap"></span><button class="btn quiet press" id="zoom-close" type="button">Close</button></figcaption></figure></dialog>
 
 <script>
 (function(){
@@ -487,7 +493,7 @@ dialog .btn{height:44px;font-size:1rem}
 
   document.addEventListener('click',function(e){
     var z=e.target.closest('[data-zoom]');
-    if(z){openZoom(z.getAttribute('data-zoom'),z.getAttribute('data-cap'));return}
+    if(z){$('wifi-info').hidden=!z.hasAttribute('data-wifi');openZoom(z.getAttribute('data-zoom'),z.getAttribute('data-cap'));return}
     var g=e.target.closest('[data-go]');
     if(g){handOver(+g.getAttribute('data-go'),true);return}
     var a=e.target.closest('[data-act]');if(!a)return;
@@ -515,6 +521,10 @@ dialog .btn{height:44px;font-size:1rem}
     var img=new Image();img.src=src;img.alt=cap;$('zoom-pic').replaceChildren(img);$('zoom-cap').textContent=cap;
     if(dlg.showModal)dlg.showModal();else window.open(src);
   }
+  $('wifi-copy').addEventListener('click',function(){
+    var b=this;
+    if(navigator.clipboard)navigator.clipboard.writeText($('wifi-pass').textContent).then(function(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy'},1500)},function(){});
+  });
   $('zoom-close').addEventListener('click',function(){dlg.close()});
   dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
 
