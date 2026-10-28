@@ -123,7 +123,7 @@ A pink-led palette where saturated colour is reserved for state and action, on s
 - **Petal Line** (petal-line): dashed sticker outlines, hairline dividers, the memo pad's binding strip.
 - **Plum Ink** (plum-ink): all body text and headings.
 
-Night mode swaps to ground #24121b, sheet #36202b, mat #2d1823, ink #ffe8f0, sticker pink #ff6c9f, raspberry text #ff8fb5 with #2a0f1c on it, and an alert of #8f2452 so warnings stay serious without glowing.
+Night mode is currently switched off: the page carries `data-theme="light"` on `<html>`, so it stays light whatever the device setting. The palette is kept for later; remove that attribute to follow the device again. When on, night mode swaps to ground #24121b, sheet #36202b, mat #2d1823, ink #ffe8f0, sticker pink #ff6c9f, raspberry text #ff8fb5 with #2a0f1c on it, and an alert of #8f2452 so warnings stay serious without glowing.
 
 ### Named Rules
 **The Stickers Mean Done Rule.** A sticker appears only where a step is finished. Empty is always a dashed outline with the step number; never use sticker shapes as decoration.

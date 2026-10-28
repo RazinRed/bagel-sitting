@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<!-- always light for now: data-theme="light" stops the night palette following the device setting. The night palette is kept below; remove this attribute to let it follow the device again, or set data-theme="dark" to force it. -->
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#ffe3ec" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#24121b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffe3ec">
+<!-- night-mode browser bar colour, for when the night palette is switched back on:
+<meta name="theme-color" content="#24121b" media="(prefers-color-scheme: dark)"> -->
 <title>Bagel's Sitter Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,7 +145,7 @@ img{display:block;max-width:100%}
 .tips div{background:var(--mat);border-radius:14px;padding:8px 12px;font-size:.92rem}
 .tips b{display:block;color:var(--pink-ink)}
 .thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-.thumbs .photo{aspect-ratio:1}
+.thumbs .photo{aspect-ratio:3/4}
 .thumbs figcaption{font-size:.82rem;margin-top:4px;font-weight:700}
 .thumbs figure{margin:0}
 /* the action bar sticks to the bottom of the screen so Done is always in thumb reach */
@@ -161,9 +163,9 @@ img{display:block;max-width:100%}
 /* the end-of-visit reward: Coke Zero and Yakult stickers bobbing over a slowly spinning prize starburst */
 .reward{position:relative;width:230px;height:220px;margin:0 auto 8px;animation:reward-in .5s var(--ease-pop) both}
 .reward .burst{position:absolute;inset:5px;width:220px;height:210px;filter:var(--sticker-shadow);animation:spin 16s linear infinite}
-.reward .item{position:absolute;bottom:36px;width:74px;filter:drop-shadow(0 4px 4px rgba(58,24,48,.28));animation:bob 2.6s ease-in-out infinite alternate}
-.reward .can{left:44px;--r:-8deg}
-.reward .yak{right:44px;--r:7deg;animation-delay:-1.3s}
+.reward .item{position:absolute;height:auto;filter:drop-shadow(0 4px 4px rgba(58,24,48,.28));animation:bob 2.6s ease-in-out infinite alternate}
+.reward .can{left:48px;bottom:30px;width:62px;--r:-9deg}
+.reward .yak{right:46px;bottom:30px;width:74px;--r:8deg;animation-delay:-1.3s}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes bob{from{transform:translateY(4px) rotate(var(--r))}to{transform:translateY(-8px) rotate(var(--r))}}
 @keyframes reward-in{from{opacity:0;transform:scale(.7)}}
@@ -299,9 +301,10 @@ dialog .btn{height:44px;font-size:1rem}
     {id:'c2',part:1,title:"Wash yesterday's bowl if it's still out",photo:'bowl.jpg',alt:'Raised white ceramic cat bowl with a blue wave pattern and a white plastic spoon inside, next to the sink',cap:'bowl and spoon live here, by the sink',
       text:'Wash it and put it back <b>on the counter next to the kitchen sink</b>, with the white spoon resting inside.',
       more:['Her bowl is the raised white ceramic one with a blue wave and fish pattern on the stand.',"On your last day, just leave it; we'll clean it when we're back."]},
-    {id:'c3',part:1,title:'Check the fridge for an open can',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid, a can of wet cat food and the krill oil pump bottle on the counter',cap:'pink lid, wet food can, krill oil',
+    {id:'c3',part:1,title:'Check the fridge for an open can',photo:'fridge.jpg',alt:'An opened can of Kit Cat with the pink silicone lid on it, on a fridge shelf',cap:'an open can with the pink lid, in the fridge',
       text:'Look for an opened can with the <b>pink silicone lid</b> on it. If there is one, use that.',
-      more:["None there? Open a new can: <b>Kit Cat Tuna &amp; Chicken Hearts</b>, it's her favourite."]},
+      more:["None there? Open a new can: <b>Kit Cat Tuna &amp; Chicken Hearts</b>, it's her favourite."],
+      thumbs:[['kitcat.jpg','A box of Kit Cat Tuna and Chicken Heart cans with one can on top','new cans: the Kit Cat box']]},
     {id:'c4',part:1,title:'Start heating the water',qty:['×2','presses'],photo:'kettle.jpg',alt:'Glass kettle with a white heating base and a round button panel',cap:'the glass kettle: lower right button, twice',
       text:'On the glass kettle, press the <b>lower right</b> button (labelled <span class="nb">功能 / 取消</span>) <b>twice</b> to start heating.'},
     {id:'c5',part:1,title:'Scoop wet food into her bowl',qty:['⅓','can'],photo:'bowl.jpg',alt:'Raised white ceramic cat bowl with a white plastic spoon inside',cap:'use the white plastic spoon',
@@ -309,29 +312,31 @@ dialog .btn{height:44px;font-size:1rem}
     {id:'c6',part:1,title:'Add krill oil',qty:['½','pump'],photo:'krill.jpg',alt:'Silver Absolute Holistic Arctic Krill Oil pump bottle with a red Hip and Joint label',cap:'krill oil: ½ pump per meal',
       text:'Press the pump bottle down <b>halfway</b> onto the food.',
       more:['Grab the right bottle: it sits next to some of our own supplements. Bagel\'s is the <b>silver bottle with the red "Hip &amp; Joint" label</b> and a pump top.']},
-    {id:'c7',part:1,title:'Mix in the water',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid, a can of wet cat food and the krill oil pump bottle on the counter',cap:'fresh can or fridge can?',
+    {id:'c7',part:1,title:'Mix in the water',photo:'mixed.jpg',alt:'Wet food mixed with water in her steel bowl',cap:'mixed and ready',
       pair:[['Fresh can','40°C','warm, not hot'],['Can from the fridge','Hot','takes the chill off']],
       text:'Pour some in and stir until it is <b>thick and liquidy</b>, like a thick soup.'},
-    {id:'c8',part:1,title:'Cover the can and put it in the fridge',photo:'supplies.jpg',land:true,alt:'Pink silicone can lid on the counter',cap:'the pink silicone lid',
+    {id:'c8',part:1,title:'Cover the can and put it in the fridge',photo:'fridge.jpg',alt:'An opened can with the pink silicone lid on it, on a fridge shelf',cap:'lid on, back in the fridge',
       text:'Put the <b>pink silicone lid</b> over the opened can and put it back in the fridge.'},
     {id:'c9',part:1,title:'Serve to the left of the automatic feeder',photo:'feeder.jpg',alt:'White automatic feeder with kibble in its steel bowl, a water fountain to its right',cap:'wet food goes on the floor, left of the feeder',
       text:'Put the bowl on the floor <b>to the left of the white automatic feeder</b>. That\'s where Bagel expects her wet food.',
-      more:["She might not eat straight away, and that's okay. <b>Leave the bowl out</b>; it gets washed at the next visit.",'Not eating? Squeeze a little <b>Churu</b> onto her wet food to tempt her. The tubes are in the clear tub with the pink lid on the kitchen counter.','The feeder (Petkit Fresh Element Solo) gives her dry kibble by itself.'],
-      thumbs:[['churu.jpg','Tub of Inaba Ciao Churu treat tubes with a pink lid','Churu, the secret weapon']]},
-    {id:'c10',part:2,title:'Check the water fountain',photo:'feeder.jpg',alt:'White automatic feeder with a white water fountain to its right',cap:'the fountain is right of the feeder',
+      more:["She might not eat straight away, and that's okay. <b>Leave the bowl out</b>; it gets washed at the next visit.",'Not eating? Tempt her with a treat: squeeze a little <b>Churu</b> onto her wet food, or put a <b>dry treat</b> in front of her bowl. Both are on the kitchen counter, side by side.','The feeder (Petkit Fresh Element Solo) gives her dry kibble by itself.'],
+      thumbs:[['treats.jpg','A clear box of dry cat treats next to a clear tub of Churu treat tubes','treats, the secret weapon']]},
+    {id:'c10',part:2,title:'Check the water fountain',photo:'fountain.jpg',alt:'White water fountain with a clear tank, next to the automatic feeder',cap:'the fountain, right of the feeder',
       text:'The white water bowl to the right of the feeder. Make sure it <b>has water</b> and <b>still has battery</b>.',
-      more:['Battery low? Let us know in the group chat.']},
-    {id:'c11',part:2,title:'Scoop the litter box and flush it',
+      more:['Battery low? Let us know in the group chat.'],
+      thumbs:[['fountain-pump.jpg','A hand lifting the white pump unit out of the side of the water fountain','the unit on the side lifts out']]},
+    {id:'c11',part:2,title:'Scoop the litter box and flush it',photo:'litter.jpg',alt:'Litter box with a metal scoop, in the toilet at the back',cap:'litter box and scoop, in the toilet at the back',
       text:'The litter box is in the <b>toilet at the back</b> of the home.',
-      more:['Scoop out any clumps and poop.',"Flush it down the toilet. We use flushable litter, so it's safe.",'<b>Close the toilet lid</b> afterwards.']},
+      more:['Scoop out any clumps and poop.',"Flush it down the toilet. We use flushable litter, so it's safe.",'<b>Close the toilet lid</b> afterwards.'],
+      thumbs:[['litter-scoop.jpg','Scooping clumps out of the litter box with the metal scoop','scoop out the clumps']]},
     {id:'c12',part:2,title:'Playtime',opt:true,qty:['10–15','min'],photo:'sofa.jpg',alt:'Gap between the sofa armrest and seat cushion where the wand toys are tucked',cap:'wand toys hide in this sofa gap',
       text:'Two <b>wand toys</b> are tucked between the sofa cushion and the left armrest. Slide them back in when you\'re done.',
       more:["Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!"],
-      tips:[['Catch her eye','Wiggle the wand quickly to get her attention.'],['Hide and seek',"Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears."],['Tail tickle',"Lightly touch the toy to her lower back or tail. She'll chase it or flop down and bite it."]]},
-    {id:'c13',part:2,title:'Give her a treat',photo:'treat.jpg',alt:'Clear plastic container of cat treats on the table next to the 3D printer (blurry photo)',cap:"treat box by the 3D printer (sorry it's blurry!)",
+      tips:[['Catch her eye','Wiggle the wand quickly to get her attention.'],['Hide and seek',"Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears."],['Tail tickle',"Lightly touch the toy to her lower back or tail. She'll chase it or flop down and bite it."]],
+      thumbs:[['wands.jpg','The two wand toys: one with a rainbow caterpillar, one with a pink feather','the two wand toys']]},
+    {id:'c13',part:2,title:'Give her a treat',photo:'treats.jpg',alt:'A clear box of dry cat treats next to a clear tub of Churu treat tubes',cap:'dry treats (left) and Churu (right)',
       text:'She can have <b>either kind</b> of treat:',
-      more:['<b>Dry treats</b> from the clear plastic box on the <b>table next to the 3D printer</b>.','<b>Churu</b> wet treat tubes, from the clear tub with the pink lid on the kitchen counter.',"Wet food not eaten yet? Put the treat <b>in front of her wet food bowl</b> to lead her to it."],
-      thumbs:[['churu.jpg','Tub of Inaba Ciao Churu treat tubes with a pink lid','the Churu tub']]},
+      more:['Both are on the <b>kitchen counter</b>, side by side.','<b>Dry treats</b> from the clear plastic box (left in the photo).','<b>Churu</b> wet treat tubes from the clear tub next to it (right).',"Wet food not eaten yet? Put the treat <b>in front of her wet food bowl</b> to lead her to it."]},
     {id:'c14',part:2,title:'Check where Bagel is, then leave',door:DOOR_OUT,photo:'cat.jpg',alt:'Bagel curled up asleep on the mat by the front door',cap:'she might be back on the mat',
       text:'Find Bagel before you open the door, then close it behind you carefully.'}
   ];
@@ -373,20 +378,12 @@ dialog .btn{height:44px;font-size:1rem}
   var ZOOM_ICON='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>';
   var DOOR_ICON='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M3.5 21h17"/><circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"/></svg>';
 
-  // end-of-visit reward: a 20-point prize starburst, with Coke Zero and Yakult drawn as die-cut stickers (white rim, then the object)
+  // end-of-visit reward: a 20-point prize starburst, with Coke Zero and Yakult photo stickers (cut out with a white die-cut rim)
   var REWARD=(function(){
     var pts=[],n=20;
     for(var k=0;k<n*2;k++){var r=k%2?86:104,a=Math.PI*k/n-Math.PI/2;pts.push((110+r*Math.cos(a)).toFixed(1)+','+(110+r*Math.sin(a)).toFixed(1))}
-    var font='font-family="M PLUS Rounded 1c, system-ui, sans-serif" font-weight="900" text-anchor="middle"';
-    var canShape='<rect x="10" y="5" width="40" height="10" rx="3"/><rect x="8" y="11" width="44" height="86" rx="7"/><rect x="10" y="93" width="40" height="10" rx="3"/>';
-    var can='<svg class="item can" viewBox="0 0 60 110"><g fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round">'+canShape+'</g>'
-      +'<rect x="10" y="5" width="40" height="10" rx="3" fill="#c9cdd2"/><rect x="10" y="93" width="40" height="10" rx="3" fill="#c9cdd2"/><rect x="8" y="11" width="44" height="86" rx="7" fill="#1a1a1a"/>'
-      +'<rect x="8" y="50" width="44" height="24" fill="#e4002b"/><rect x="14" y="16" width="4" height="76" rx="2" fill="#fff" opacity=".18"/>'
-      +'<text x="30" y="40" '+font+' font-size="12" fill="#fff">Coke</text><text x="30" y="66.5" '+font+' font-size="12" fill="#fff" letter-spacing=".5">ZERO</text></svg>';
-    var body='M18 14H42C49 22 49 35 42 44C38 50 38 56 42 62C50 74 51 90 47 98C45 104 40 106 30 106C20 106 15 104 13 98C9 90 10 74 18 62C22 56 22 50 18 44C11 35 11 22 18 14Z';
-    var yak='<svg class="item yak" viewBox="0 0 60 110"><g fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round"><rect x="17" y="4" width="26" height="12" rx="4"/><path d="'+body+'"/></g>'
-      +'<path d="'+body+'" fill="#fff6ea" stroke="#e8cfb3" stroke-width="2"/><rect x="17" y="4" width="26" height="12" rx="4" fill="#e60012"/><rect x="20" y="6" width="12" height="3" rx="1.5" fill="#fff" opacity=".35"/>'
-      +'<text x="30" y="33" '+font+' font-size="9.5" fill="#e60012">Yakult</text></svg>';
+    var can='<img class="item can" src="images/reward-coke.png" alt="" width="140" height="331">';
+    var yak='<img class="item yak" src="images/reward-yakult.png" alt="" width="200" height="382">';
     return '<div class="reward" aria-hidden="true"><svg class="burst" viewBox="0 0 220 220"><polygon points="'+pts.join(' ')+'" fill="var(--butter)" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/>'
       +'<circle cx="110" cy="110" r="70" fill="var(--butter-soft)"/><circle cx="110" cy="110" r="62" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/></svg>'+can+yak+'</div>';
   })();
