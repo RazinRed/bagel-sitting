@@ -83,6 +83,7 @@ img{display:block;max-width:100%}
 .face img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .top h1{font-size:1.95rem}
 .status{font-weight:800;font-size:.95rem;font-variant-numeric:tabular-nums}
+.wifi{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;margin-bottom:10px;border-radius:999px;background:var(--sheet);color:var(--pink-ink);font-weight:900;font-size:.95rem;box-shadow:var(--shadow)}
 .hello{margin-top:12px;font-size:.95rem}
 .hello b{color:var(--pink-ink)}
 
@@ -242,6 +243,7 @@ dialog .btn{height:44px;font-size:1rem}
 <div class="wrap">
   <div class="layout">
   <div class="tool">
+  <button class="wifi press" type="button" data-zoom="images/wifi.jpg" data-cap="Scan with your phone camera to join the WiFi" aria-label="Show the WiFi QR code"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 9a14 14 0 0 1 19 0M6 12.6a9 9 0 0 1 12 0M9.4 16.2a4 4 0 0 1 5.2 0"/><circle cx="12" cy="19.6" r="1.2" fill="currentColor" stroke="none"/></svg>WiFi</button>
   <header class="top">
     <div class="face"><img src="images/face.jpg" alt="Bagel"></div>
     <div><h1>Bagel Sitting</h1><p class="status" id="status" aria-live="polite">0 of 14 stickers</p></div>
