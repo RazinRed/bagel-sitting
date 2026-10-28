@@ -158,8 +158,16 @@ img{display:block;max-width:100%}
 
 /* all done */
 .finish{text-align:center;padding:22px 18px 20px}
-.finish .big{display:flex;justify-content:center;margin-bottom:6px}
-.finish .big svg{width:84px;height:84px;filter:var(--sticker-shadow)}
+/* the end-of-visit reward: Coke Zero and Yakult stickers bobbing over a slowly spinning prize starburst */
+.reward{position:relative;width:230px;height:220px;margin:0 auto 8px;animation:reward-in .5s var(--ease-pop) both}
+.reward .burst{position:absolute;inset:5px;width:220px;height:210px;filter:var(--sticker-shadow);animation:spin 16s linear infinite}
+.reward .item{position:absolute;bottom:36px;width:74px;filter:drop-shadow(0 4px 4px rgba(58,24,48,.28));animation:bob 2.6s ease-in-out infinite alternate}
+.reward .can{left:44px;--r:-8deg}
+.reward .yak{right:44px;--r:7deg;animation-delay:-1.3s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{from{transform:translateY(4px) rotate(var(--r))}to{transform:translateY(-8px) rotate(var(--r))}}
+@keyframes reward-in{from{opacity:0;transform:scale(.7)}}
+@media (prefers-reduced-motion:reduce){.reward,.reward .burst,.reward .item{animation:none}.reward .item{transform:rotate(var(--r))}}
 .finish h2{font-size:1.7rem}
 .finish p{margin-top:6px}
 .treat-note{background:var(--mat);border-radius:16px;padding:12px 14px;margin-top:14px;text-align:left}
@@ -321,8 +329,9 @@ dialog .btn{height:44px;font-size:1rem}
       more:["Bagel can be shy with new people, so if she isn't in the mood, that's completely fine. No pressure!"],
       tips:[['Catch her eye','Wiggle the wand quickly to get her attention.'],['Hide and seek',"Once she's watching, move the toy behind the left or right side of the sofa. She usually chases when it disappears."],['Tail tickle',"Lightly touch the toy to her lower back or tail. She'll chase it or flop down and bite it."]]},
     {id:'c13',part:2,title:'Give her a treat',photo:'treat.jpg',alt:'Clear plastic container of cat treats on the table next to the 3D printer (blurry photo)',cap:"treat box by the 3D printer (sorry it's blurry!)",
-      text:'The treats are in the clear container on the <b>table next to the 3D printer</b>.',
-      more:["Wet food not eaten yet? Put the treat <b>in front of her wet food bowl</b> to lead her to it."]},
+      text:'She can have <b>either kind</b> of treat:',
+      more:['<b>Dry treats</b> from the clear plastic box on the <b>table next to the 3D printer</b>.','<b>Churu</b> wet treat tubes, from the clear tub with the pink lid on the kitchen counter.',"Wet food not eaten yet? Put the treat <b>in front of her wet food bowl</b> to lead her to it."],
+      thumbs:[['churu.jpg','Tub of Inaba Ciao Churu treat tubes with a pink lid','the Churu tub']]},
     {id:'c14',part:2,title:'Check where Bagel is, then leave',door:DOOR_OUT,photo:'cat.jpg',alt:'Bagel curled up asleep on the mat by the front door',cap:'she might be back on the mat',
       text:'Find Bagel before you open the door, then close it behind you carefully.'}
   ];
@@ -363,6 +372,24 @@ dialog .btn{height:44px;font-size:1rem}
   }
   var ZOOM_ICON='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>';
   var DOOR_ICON='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21"/><path d="M3.5 21h17"/><circle cx="14.5" cy="12.5" r="1.1" fill="currentColor" stroke="none"/></svg>';
+
+  // end-of-visit reward: a 20-point prize starburst, with Coke Zero and Yakult drawn as die-cut stickers (white rim, then the object)
+  var REWARD=(function(){
+    var pts=[],n=20;
+    for(var k=0;k<n*2;k++){var r=k%2?86:104,a=Math.PI*k/n-Math.PI/2;pts.push((110+r*Math.cos(a)).toFixed(1)+','+(110+r*Math.sin(a)).toFixed(1))}
+    var font='font-family="M PLUS Rounded 1c, system-ui, sans-serif" font-weight="900" text-anchor="middle"';
+    var canShape='<rect x="10" y="5" width="40" height="10" rx="3"/><rect x="8" y="11" width="44" height="86" rx="7"/><rect x="10" y="93" width="40" height="10" rx="3"/>';
+    var can='<svg class="item can" viewBox="0 0 60 110"><g fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round">'+canShape+'</g>'
+      +'<rect x="10" y="5" width="40" height="10" rx="3" fill="#c9cdd2"/><rect x="10" y="93" width="40" height="10" rx="3" fill="#c9cdd2"/><rect x="8" y="11" width="44" height="86" rx="7" fill="#1a1a1a"/>'
+      +'<rect x="8" y="50" width="44" height="24" fill="#e4002b"/><rect x="14" y="16" width="4" height="76" rx="2" fill="#fff" opacity=".18"/>'
+      +'<text x="30" y="40" '+font+' font-size="12" fill="#fff">Coke</text><text x="30" y="66.5" '+font+' font-size="12" fill="#fff" letter-spacing=".5">ZERO</text></svg>';
+    var body='M18 14H42C49 22 49 35 42 44C38 50 38 56 42 62C50 74 51 90 47 98C45 104 40 106 30 106C20 106 15 104 13 98C9 90 10 74 18 62C22 56 22 50 18 44C11 35 11 22 18 14Z';
+    var yak='<svg class="item yak" viewBox="0 0 60 110"><g fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round"><rect x="17" y="4" width="26" height="12" rx="4"/><path d="'+body+'"/></g>'
+      +'<path d="'+body+'" fill="#fff6ea" stroke="#e8cfb3" stroke-width="2"/><rect x="17" y="4" width="26" height="12" rx="4" fill="#e60012"/><rect x="20" y="6" width="12" height="3" rx="1.5" fill="#fff" opacity=".35"/>'
+      +'<text x="30" y="33" '+font+' font-size="9.5" fill="#e60012">Yakult</text></svg>';
+    return '<div class="reward" aria-hidden="true"><svg class="burst" viewBox="0 0 220 220"><polygon points="'+pts.join(' ')+'" fill="var(--butter)" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/>'
+      +'<circle cx="110" cy="110" r="70" fill="var(--butter-soft)"/><circle cx="110" cy="110" r="62" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/></svg>'+can+yak+'</div>';
+  })();
 
   var done={},view=0;
   function load(){try{var a=JSON.parse(localStorage.getItem(KEY)||'[]');a.forEach(function(id){done[id]=true})}catch(e){}}
@@ -405,7 +432,7 @@ dialog .btn{height:44px;font-size:1rem}
     $('thanks').hidden=view<0;
     if(view<0){ // all done
       $('door').innerHTML='';$('part').innerHTML='<span>Visit complete</span><span>14 of 14</span>';$('next').innerHTML='';
-      memo.innerHTML='<div class="finish"><div class="big">'+sticker(13)+'</div><h2>All done, great job!</h2><p>Every sticker is on the sheet. Bagel says thank you (probably meow).</p><div class="treat-note"><b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.</div>'+holdBtn()+'</div>';
+      memo.innerHTML='<div class="finish">'+REWARD+'<h2>All done, great job!</h2><p>Every sticker is on the sheet. Bagel says thank you (probably meow).</p><div class="treat-note"><b>A little thank you for you:</b> please help yourself to the <b>Coke Zero</b> and <b>Yakult</b> in the fridge.</div>'+holdBtn()+'</div>';
       return;
     }
     var s=STEPS[view],d=done[s.id];
